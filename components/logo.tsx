@@ -1,48 +1,52 @@
-import Image from "next/image";
 import { brand } from "@/content/site";
+import { LOGO_MAJOR_D, LOGO_SCRIPT_D, LOGO_VIEWBOX, LOGO_VIEWBOX_W, LOGO_VIEWBOX_X } from "@/lib/logo-paths";
 
-const SRC = { dark: "/brand/logo-dark.webp", white: "/brand/logo-white.webp" };
-
-// Raster stand-in until the SVG arrives.
-export function Logo({
-  tone = "dark",
-  className,
-  sizes = "200px",
-}: {
-  tone?: "dark" | "white";
-  className?: string;
-  sizes?: string;
-}) {
+// Inline SVG in currentColor, so the tone comes from the text color.
+export function Logo({ className = "" }: { className?: string }) {
   return (
-    <Image src={SRC[tone]} alt={brand.name} width={2000} height={907} sizes={sizes} className={className} />
+    <svg viewBox={LOGO_VIEWBOX} role="img" aria-label={brand.name} className={className}>
+      <path fill="currentColor" fillRule="evenodd" d={LOGO_SCRIPT_D} />
+      <path fill="currentColor" fillRule="evenodd" d={LOGO_MAJOR_D} />
+    </svg>
   );
 }
 
-// Hero logo with the intro: script line wipes in, then MAJOR fades up.
-// Two stacked copies of the same image, each clipped to its half.
-export function LogoIntro({ tone = "dark", className = "" }: { tone?: "dark" | "white"; className?: string }) {
-  const sizes = "(min-width: 768px) 560px, 80vw";
+// Hero logo with the signature intro: the script line is revealed left to
+// right through a mask with a soft leading edge, so the swash reads as
+// being drawn; MAJOR fades up after. With reduced motion (animations off)
+// the mask rests fully open and the logo is static. One per page: the
+// mask ids are fixed.
+const FEATHER = 90; // soft edge width, in viewBox units
+const [, VB_Y, , VB_H] = LOGO_VIEWBOX.split(" ").map(Number);
+
+export function LogoIntro({ className = "" }: { className?: string }) {
   return (
-    <span className={`logo-intro ${className}`}>
-      <Image
-        src={SRC[tone]}
-        alt={brand.name}
-        width={2000}
-        height={907}
-        sizes={sizes}
-        priority
-        className="logo-intro__script h-auto w-full"
-      />
-      <Image
-        src={SRC[tone]}
-        alt=""
-        aria-hidden
-        width={2000}
-        height={907}
-        sizes={sizes}
-        priority
-        className="logo-intro__major h-auto w-full"
-      />
-    </span>
+    <svg viewBox={LOGO_VIEWBOX} role="img" aria-label={brand.name} className={`logo-intro ${className}`}>
+      <defs>
+        <linearGradient id="bm-swash-edge" x1="0" x2="1" y1="0" y2="0">
+          <stop offset={LOGO_VIEWBOX_W / (LOGO_VIEWBOX_W + FEATHER)} stopColor="#fff" />
+          <stop offset="1" stopColor="#000" />
+        </linearGradient>
+        <mask
+          id="bm-swash-mask"
+          maskUnits="userSpaceOnUse"
+          x={LOGO_VIEWBOX_X - FEATHER * 2}
+          y={VB_Y}
+          width={LOGO_VIEWBOX_W + FEATHER * 4}
+          height={VB_H}
+        >
+          <rect
+            className="logo-intro__sweep"
+            x={LOGO_VIEWBOX_X}
+            y={VB_Y}
+            width={LOGO_VIEWBOX_W + FEATHER}
+            height={VB_H}
+            fill="url(#bm-swash-edge)"
+          />
+        </mask>
+      </defs>
+      <path fill="currentColor" fillRule="evenodd" d={LOGO_SCRIPT_D} mask="url(#bm-swash-mask)" />
+      <path className="logo-intro__major" fill="currentColor" fillRule="evenodd" d={LOGO_MAJOR_D} />
+    </svg>
   );
 }

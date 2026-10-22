@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="bg-[var(--color-ink)] px-5 pt-20 pb-40 text-[var(--color-white)] md:px-12 md:pb-28">
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-6">
-          <Logo tone="white" className="h-auto w-48 md:w-64" sizes="256px" />
+          <Logo className="h-auto w-48 md:w-64" />
           <p className="t-display mt-10 text-6xl md:text-8xl">{brand.tagline}</p>
           <p className="t-label mt-4 text-xs">{brand.supporting}</p>
         </div>

@@ -132,39 +132,31 @@ body {
 
 /* --------------------------------------------------------- logo intro */
 
-/* Raster stand-in for the SVG draw-in: the script line ("be" + swash) is
-   wiped in left to right, then MAJOR fades up. Swapped for an SVG mask
-   on the swash path once vector files arrive. */
+/* Swash draw-in (components/logo.tsx). The resting state is fully drawn;
+   the animations only supply the starting frame, so with animations off
+   (reduced motion) the logo is simply static. */
 .logo-intro {
-  position: relative;
   display: block;
+  overflow: visible;
 }
-.logo-intro__script {
-  clip-path: inset(0 0 41% 0);
-  animation: logo-script 1500ms var(--ease-wipe) 200ms both;
+.logo-intro__sweep {
+  transform-box: fill-box;
+  animation: logo-sweep 1700ms cubic-bezier(0.55, 0.1, 0.25, 1) 200ms backwards;
 }
 .logo-intro__major {
-  position: absolute;
-  inset: 0;
-  clip-path: inset(59% 0 0 0);
-  animation: logo-major 900ms var(--ease-out) 1400ms both;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-major 900ms var(--ease-out) 1500ms backwards;
 }
-@keyframes logo-script {
+@keyframes logo-sweep {
   from {
-    clip-path: inset(0 100% 41% 0);
-  }
-  to {
-    clip-path: inset(0 0 41% 0);
+    transform: translateX(-100%);
   }
 }
 @keyframes logo-major {
   from {
     opacity: 0;
-    transform: translateY(8%);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+    transform: translateY(12%);
   }
 }
 

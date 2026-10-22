@@ -71,7 +71,7 @@ export function Hero() {
       )}
 
       <div className="px-5 pt-[calc(var(--header-h)+var(--frame)+8px)] md:px-12">
-        <LogoIntro tone={video ? "white" : "dark"} className="w-[min(80vw,560px)]" />
+        <LogoIntro className={`w-[min(80vw,560px)] ${ink}`} />
       </div>
 
       <div className="px-5 pb-[calc(var(--frame)+72px)] md:px-12 md:pb-[calc(var(--frame)+48px)]">
