@@ -34,7 +34,7 @@ function LinkedInIcon() {
 }
 
 export function SocialIcons({ className = "" }: { className?: string }) {
-  const link = "inline-flex rounded-full p-1 opacity-90 transition-opacity hover:opacity-100";
+  const link = "hit inline-flex rounded-full p-1 opacity-90 transition-opacity hover:opacity-100";
   return (
     <ul className={`flex items-center gap-4 ${className}`}>
       <li>

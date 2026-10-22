@@ -81,17 +81,17 @@ export function SignupForm() {
         <span className="t-label text-[11px]">{f.email}</span>
         <input name="email" type="email" required autoComplete="email" maxLength={254} className={input} />
       </label>
-      <fieldset className="grid gap-2">
+      <fieldset className="grid">
         <legend className="t-label mb-2 text-[11px]">{f.interests}</legend>
         {join.signup.interestOptions.map((o) => (
-          <label key={o.id} className="flex items-center gap-3 text-base">
+          <label key={o.id} className="-ml-3 flex min-h-11 cursor-pointer items-center gap-3 pl-3 text-base">
             <input
               type="checkbox"
               checked={interests.includes(o.id)}
               onChange={(e) =>
                 setInterests((cur) => (e.target.checked ? [...cur, o.id] : cur.filter((s) => s !== o.id)))
               }
-              className="size-4 accent-[var(--color-blue-deep)]"
+              className="size-5 shrink-0 accent-[var(--color-blue-deep)]"
             />
             {o.label}
           </label>
@@ -104,8 +104,8 @@ export function SignupForm() {
           <input name="website" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
-      <label className="flex items-start gap-3 text-sm">
-        <input name="optIn" type="checkbox" required className="mt-1 size-4 shrink-0 accent-[var(--color-blue-deep)]" />
+      <label className="-ml-3 flex min-h-11 cursor-pointer items-start gap-3 py-3 pl-3 text-sm">
+        <input name="optIn" type="checkbox" required className="size-5 shrink-0 accent-[var(--color-blue-deep)]" />
         {f.optIn}
       </label>
       <div>

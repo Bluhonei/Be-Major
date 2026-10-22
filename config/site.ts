@@ -32,5 +32,9 @@ export const LINKEDIN = {
 
 export const CONTACT_EMAIL = "hello@be-major.com";
 
+// Search engines may index only the production deployment, and only after
+// launch. Preview deployments are never indexable, before or after launch.
+export const INDEXABLE = LAUNCHED && process.env.VERCEL_ENV === "production";
+
 // Copy flags are visible everywhere until launch, then only on previews.
 export const SHOW_FLAGS = !LAUNCHED || process.env.VERCEL_ENV !== "production";
