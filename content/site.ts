@@ -19,7 +19,6 @@ const flagged = (flag: FlagKind, text: string, note?: string): Flagged => ({
   note,
 });
 
-const LOREM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 const LOREM =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
@@ -145,12 +144,7 @@ export const programs = {
       name: "AI Anatomy",
       status: "In development",
       text: "AI Anatomy makes emerging technology more accessible through practical learning and hands-on exploration. Designed for curious minds at every stage, the program demystifies artificial intelligence, builds digital confidence, and equips participants with the knowledge to navigate an increasingly AI-driven world.",
-      subOfferings: [
-        {
-          name: "AI Made Simple",
-          text: flagged("brae-to-write", LOREM_SHORT, "Keep this sub-offering? If so, one-line description"),
-        },
-      ],
+      subOfferings: [],
       media: {},
       color: "periwinkle",
       layout: "right",
