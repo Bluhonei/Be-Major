@@ -77,7 +77,7 @@ function ProgramBlock({ program: p }: { program: Program }) {
           </div>
         )}
         <GetUpdatesLink
-          slug={p.slug}
+          interest="programs"
           label={programs.cta}
           className="t-label mt-8 inline-block bg-[var(--color-ink)] px-7 py-4 text-xs text-[var(--color-white)] hover:bg-[var(--color-blue-deep)]"
         />

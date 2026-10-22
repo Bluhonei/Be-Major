@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { INTEREST_EVENT } from "@/components/get-updates-link";
-import { join, programs } from "@/content/site";
+import { join } from "@/content/site";
 
 type State = "idle" | "sending" | "success" | "error";
 const ERRORS = join.signup.errors;
@@ -83,17 +83,17 @@ export function SignupForm() {
       </label>
       <fieldset className="grid gap-2">
         <legend className="t-label mb-2 text-[11px]">{f.interests}</legend>
-        {programs.items.map((p) => (
-          <label key={p.slug} className="flex items-center gap-3 text-base">
+        {join.signup.interestOptions.map((o) => (
+          <label key={o.id} className="flex items-center gap-3 text-base">
             <input
               type="checkbox"
-              checked={interests.includes(p.slug)}
+              checked={interests.includes(o.id)}
               onChange={(e) =>
-                setInterests((cur) => (e.target.checked ? [...cur, p.slug] : cur.filter((s) => s !== p.slug)))
+                setInterests((cur) => (e.target.checked ? [...cur, o.id] : cur.filter((s) => s !== o.id)))
               }
               className="size-4 accent-[var(--color-blue-deep)]"
             />
-            {p.name}
+            {o.label}
           </label>
         ))}
       </fieldset>

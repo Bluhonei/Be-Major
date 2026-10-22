@@ -1,15 +1,17 @@
 import "server-only";
-import { programs } from "@/content/site";
+import { join } from "@/content/site";
 
 // Signup proxy to Flodesk. The API key only ever lives in Vercel env vars.
 //
 // Env (Vercel → Settings → Environment Variables):
 //   FLODESK_API_KEY                   required
 //   FLODESK_SEGMENT_ALL               segment every Be Major signup joins
-//   FLODESK_SEGMENT_<PROGRAM_SLUG>    optional, one per program, e.g.
-//                                     FLODESK_SEGMENT_AI_ANATOMY
+//   FLODESK_SEGMENT_<INTEREST>        optional, one per interest checkbox:
+//                                     FLODESK_SEGMENT_PROGRAMS,
+//                                     FLODESK_SEGMENT_EVENTS,
+//                                     FLODESK_SEGMENT_COMMUNITY_OPPORTUNITIES
 //   FLODESK_INTEREST_FIELD            optional custom field key; receives the
-//                                     chosen program names, comma-separated
+//                                     chosen interests, comma-separated
 //   FLODESK_DOUBLE_OPTIN              "true" to send Flodesk's confirm email
 
 export const runtime = "nodejs";
@@ -47,7 +49,7 @@ export async function POST(req: Request) {
   const email = str(body.email, 254).toLowerCase();
   if (!firstName || !lastName || !EMAIL.test(email) || body.optIn !== true) return fail("invalid", 400);
 
-  const known = new Map(programs.items.map((p) => [p.slug, p.name]));
+  const known = new Map(join.signup.interestOptions.map((o) => [o.id, o.label]));
   const interests = Array.isArray(body.interests)
     ? [...new Set(body.interests.filter((s): s is string => typeof s === "string" && known.has(s)))]
     : [];
