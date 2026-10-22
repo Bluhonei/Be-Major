@@ -14,12 +14,13 @@ Next.js 16 (App Router) · React 19 · Tailwind v4 · TypeScript · Vercel.
 | Flodesk signup proxy | `app/api/subscribe/route.ts` |
 | Brand-language + launch guard (runs before every build) | `scripts/check-content.mjs` |
 | Plans, contrast table, DNS/Flodesk plan | `docs/PHASE-0.md` |
+| Brand sheet: logo, colors, type (open in a browser) | `docs/brand-sheet.html` |
+| DNS records and rollback | `docs/DNS.md` |
 
-## Launch checklist
-1. Resolve every flagged item in `content/site.ts`.
-2. Set Flodesk env vars in Vercel (see `.env.example`).
-3. Set `LAUNCHED = true` in `config/site.ts`. This hides flags, allows indexing, and makes the build fail if any flag is left.
-4. DNS cutover per `docs/PHASE-0.md` §5.
+## Status
+Launched Oct 22, 2026: be-major.com on Vercel (www redirects to it), indexable in production
+(`LAUNCHED = true`), signup live to Flodesk with interest segments. DNS values and rollback
+are in `docs/DNS.md`.
 
 ## Hero video mode
 Add Brae's clips to `HERO_VIDEO` in `config/site.ts` (MP4 + WebM, optional

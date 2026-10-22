@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Be Major Brand Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: one long sheet in the site's own language. Blue cover band, then
+   logo, color, type and rules as numbered-free sections on white/grey. The
+   brand is deliberately single-theme (it is a light brand), so every color
+   is set explicitly and the page looks the same on any host background. */
+:root {
+  --blue: #4a80cf;
+  --blue-deep: #2f64b3;
+  --coral: #ff7a66;
+  --coral-deep: #b8402f;
+  --teal: #2bb8a8;
+  --teal-deep: #0d7468;
+  --peri: #9a9cf2;
+  --peri-deep: #5450c4;
+  --ink: #16181d;
+  --black: #111111;
+  --grey: #f3f3f1;
+  --white: #ffffff;
+  --rule: rgb(22 24 29 / 0.14);
+
+  --display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --body: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter-r);
+}
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+}
+.label {
+  font-family: var(--body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.tag {
+  display: inline-block;
+  padding: 7px 12px 6px;
+  color: var(--white);
+  font-size: 13px;
+}
+
+/* Cover */
+.cover { background: var(--blue); color: var(--black); }
+.cover .wrap { padding-block: 56px 48px; display: grid; gap: 40px; }
+.cover-logo { width: min(100%, 420px); color: var(--black); }
+.cover h1 { font-size: clamp(56px, 13vw, 150px); margin: 0; }
+.cover-meta { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; }
+.cover-meta p { margin: 0; }
+
+/* Sections */
+section { padding-block: 64px; border-top: 1px solid var(--rule); }
+section.tint { background: var(--grey); border-top: 0; }
+.sec-head { display: grid; gap: 14px; margin-bottom: 32px; max-width: 62ch; }
+.sec-head h2 { font-size: clamp(40px, 7vw, 72px); margin: 0; }
+.sec-head p { margin: 0; }
+.sec-head .tag { justify-self: start; }
+
+/* Logo */
+.logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.logo-tile { display: grid; gap: 14px; padding: 36px 28px 20px; min-width: 0; }
+.logo-tile svg { width: 100%; max-width: 360px; justify-self: center; }
+.logo-tile .label { justify-self: start; }
+.on-white { background: var(--white); color: var(--ink); outline: 1px solid var(--rule); outline-offset: -1px; }
+.on-blue { background: var(--blue); color: var(--white); }
+.on-ink { background: var(--ink); color: var(--white); }
+.logo-notes { margin: 20px 0 0; padding-left: 20px; display: grid; gap: 6px; max-width: 70ch; }
+
+/* Color */
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.swatches + h3 { margin-top: 40px; }
+h3 { margin: 0 0 14px; }
+.swatch { display: grid; grid-template-rows: auto 1fr; background: var(--white); outline: 1px solid var(--rule); outline-offset: -1px; min-width: 0; }
+.chip { height: 132px; display: flex; align-items: flex-end; padding: 14px 16px; }
+.chip .display { font-size: 30px; }
+.meta { display: grid; gap: 4px; padding: 14px 16px 16px; font-size: 14px; }
+.meta .name { font-weight: 600; font-size: 15px; }
+.meta .role { color: rgb(22 24 29 / 0.72); }
+.codes { font-variant-numeric: tabular-nums; }
+.copy {
+  font: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 10px 0;
+  margin: -10px 0 -6px;
+  text-align: left;
+  cursor: pointer;
+  justify-self: start;
+  min-height: 44px;
+}
+.copy:hover { color: var(--blue-deep); }
+.copy:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 2px; }
+.copy::after { content: "Copy"; margin-left: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(22 24 29 / 0.55); }
+.copy.done::after { content: "Copied"; color: var(--teal-deep); }
+
+/* Rules */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 12px; }
+.rule-card { display: grid; gap: 12px; padding: 22px; background: var(--white); min-width: 0; }
+.rule-card .demo { display: flex; flex-wrap: wrap; gap: 6px; }
+.rule-card .demo span { flex: 1 1 0; min-width: 0; padding: 18px 10px; text-align: center; font-family: var(--display); font-size: 22px; text-transform: uppercase; line-height: 1; }
+.verdict { font-weight: 600; }
+.yes { color: var(--teal-deep); }
+.no { color: var(--coral-deep); }
+.rule-card p { margin: 0; }
+
+/* Type */
+.type-grid { display: grid; gap: 12px; }
+.type-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px 40px; padding: 28px 0; border-top: 1px solid var(--rule); align-items: start; }
+.type-row:first-child { border-top: 0; padding-top: 0; }
+.type-spec { display: grid; gap: 6px; font-size: 14px; }
+.type-spec .face { font-weight: 600; font-size: 17px; }
+.type-spec dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px 14px; }
+.type-spec dt { color: rgb(22 24 29 / 0.6); }
+.type-spec dd { margin: 0; }
+.type-spec a { color: var(--blue-deep); }
+.sample { min-width: 0; overflow-wrap: anywhere; }
+.s-hero { font-size: clamp(64px, 11vw, 120px); }
+.s-head { font-size: clamp(40px, 6vw, 64px); }
+.s-intro { font-weight: 300; font-size: clamp(22px, 3vw, 30px); line-height: 1.3; margin: 0; }
+.s-body { font-size: 17px; line-height: 1.65; margin: 0; max-width: 62ch; }
+.s-label { font-size: 14px; }
+.s-button { display: inline-block; background: var(--ink); color: var(--white); padding: 16px 28px; }
+
+/* Tokens */
+.tokens { background: var(--ink); color: #e9eaee; padding: 22px 24px; overflow-x: auto; font: 14px/1.7 ui-monospace, "SF Mono", Menlo, Consolas, monospace; margin: 0; }
+.tok-actions { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+
+footer { background: var(--ink); color: var(--white); }
+footer .wrap { padding-block: 40px 56px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; justify-content: space-between; }
+footer svg { width: 160px; color: var(--white); }
+footer p { margin: 0; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+
+@media (max-width: 640px) {
+  .type-row { grid-template-columns: 1fr; }
+  section { padding-block: 48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-logo"><svg viewBox="9.5 0.6 700.5 297.7" role="img" aria-label="Be Major"><path fill="currentColor" fill-rule="evenodd" d="M 426.41 139.57 C 513.91 133.72 600.07 91.98 687.27 83.58 C 689.75 83.43 697.21 83.15 699.54 83.54 C 699.52 83.69 699.5 83.83 699.5 83.98 C 699.5 86.32 701.39 88.22 703.73 88.22 C 706.07 88.22 707.97 86.32 707.97 83.98 C 707.97 83.94 707.96 83.9 707.96 83.86 C 707.96 83.71 707.93 83.57 707.91 83.42 C 707.89 83.28 707.88 83.14 707.84 83 C 707.81 82.86 707.77 82.73 707.71 82.59 C 707.65 82.4 707.57 82.23 707.48 82.05 C 707.43 81.93 707.36 81.82 707.29 81.7 C 707.25 81.62 707.2 81.56 707.14 81.49 C 705.71 79.34 702.34 77.36 696.85 77.4 C 657 74.28 395.64 171.12 403.31 121.21 C 404.26 116.89 407.54 117.87 410.67 116.75 C 418.34 114.02 428.93 108.68 433.89 102.14 C 439.5 94.74 434.51 90.66 425.79 91.68 C 417.06 92.69 414.27 93.5 377.99 105.14 C 376.54 105.61 374.93 105.08 374.03 103.84 C 372.64 101.93 372.27 100.59 370.8 99.65 C 355.95 90.21 324.53 117.96 309.12 128.23 C 308.62 128.51 308.07 127.97 308.34 127.47 C 311.34 121.86 325.8 95.54 340.11 81.66 C 352.16 68.19 400.08 30.16 395.08 12.87 C 377.9 2.61 326.64 74.11 319.41 88.95 C 266.66 111.9 70.11 185.75 23.17 155.97 C 23.71 155.08 24.04 154.04 24.04 152.92 C 24.04 149.63 21.38 146.96 18.09 146.96 C 15.52 146.96 13.35 148.6 12.52 150.88 C 12.37 151.16 12.26 151.46 12.19 151.79 C 11.52 154.98 12.62 157.48 16.36 159.42 C 34.53 168.82 48.27 167.35 67.73 165.56 C 150.82 157.63 237.27 124.76 314.86 94.65 C 311.98 106.66 284.7 138.61 292.43 149 C 297.06 154.56 304.62 144.89 308.18 141.94 C 315.16 135.66 362.64 96.44 367.66 108.43 C 343.46 119.52 308.02 141.71 296.7 166.73 C 292.23 179.13 298.81 183.88 310.68 179.92 C 329.08 173.78 365.16 143.36 372.81 125.39 C 373.97 122.65 375.45 116.26 376.64 112.56 C 377.08 111.21 378.02 110.07 379.3 109.48 C 387.82 105.5 399.3 102.51 408.29 100.18 C 408.73 100.08 409.57 99.95 409.45 100.56 C 387.57 122.36 395.98 140.19 426.41 139.57 M 428.37 98.59 C 429.29 99.73 411.16 113.17 410.24 111.2 C 409.32 109.21 426.52 96.3 428.37 98.59 M 309.34 173.84 C 305.27 175.45 299.71 177.82 300.84 170.88 C 308.77 148.12 345.96 121.72 368.46 114.36 C 364.63 138.71 330.54 163.98 309.34 173.84 M 391.32 15.85 C 392.23 16.77 388.46 22.46 387.72 23.66 C 373.53 44.7 352.7 63.5 334.57 81.25 C 344.34 64.02 372.94 21.55 391.32 15.85"/><path fill="currentColor" fill-rule="evenodd" d="M 665.73 238.24 L 665.73 206.73 L 674.95 206.73 C 686.74 206.73 693.73 209.52 693.73 222 C 693.73 234.74 685.47 238.24 672.02 238.24 Z M 681.57 241.38 C 690.07 239.85 702.36 235.13 702.36 220.73 C 702.36 205 685.17 202.86 679.3 202.86 L 657.52 202.86 L 657.52 274.42 L 665.73 274.42 L 665.73 242.11 L 671.78 242.11 L 697.62 274.42 L 707.99 274.42 Z M 514.9 272.54 C 501.98 272.54 483.85 268.82 483.85 238.88 C 483.85 209.36 503.77 205.34 514.9 205.34 C 526.03 205.34 545.96 209.36 545.96 238.88 C 545.96 268.82 527.82 272.54 514.9 272.54 M 514.9 201.47 C 494.34 201.47 475.43 212.48 475.43 238.88 C 475.43 269.19 500.52 276.41 514.9 276.41 C 529.29 276.41 554.38 269.19 554.38 238.88 C 554.38 212.48 535.46 201.47 514.9 201.47 M 364.76 274.08 C 364.76 285.3 363.13 292.48 351.71 292.48 L 351.71 296.35 C 365.3 296.35 372.97 287.04 372.97 276.07 L 372.97 202.86 L 364.76 202.86 Z M 215.17 243.71 L 228.59 213.77 L 241.51 243.71 Z M 232.11 201.47 L 229.83 201.47 L 197.14 274.42 L 201.41 274.42 L 213.43 247.58 L 243.18 247.58 L 254.76 274.42 L 263.59 274.42 Z M 86.56 201.47 L 55.52 261.25 L 24.27 201.47 L 21.93 201.47 L 11.96 274.42 L 15.89 274.42 L 23.62 217.92 L 52.13 272.48 L 54.19 272.48 L 82.21 218.31 L 88.85 274.42 L 97.11 274.42 L 88.49 201.47 Z"/></svg></div>
+    <h1 class="display">Brand sheet</h1>
+    <div class="cover-meta">
+      <p class="label">Make it Major</p>
+      <p class="label">be-major.com</p>
+      <p class="label">An initiative of BRAE Media LLC</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label tag" style="background: var(--blue-deep)">Logo</span>
+        <h2 class="display">The logo</h2>
+        <p>A script “be” with a long swash over widely spaced MAJOR. Use it in one solid color: Ink on light backgrounds, white on Be Major Blue or Ink.</p>
+      </div>
+      <div class="logo-grid">
+        <div class="logo-tile on-white"><svg viewBox="9.5 0.6 700.5 297.7" role="img" aria-label="Be Major"><path fill="currentColor" fill-rule="evenodd" d="M 426.41 139.57 C 513.91 133.72 600.07 91.98 687.27 83.58 C 689.75 83.43 697.21 83.15 699.54 83.54 C 699.52 83.69 699.5 83.83 699.5 83.98 C 699.5 86.32 701.39 88.22 703.73 88.22 C 706.07 88.22 707.97 86.32 707.97 83.98 C 707.97 83.94 707.96 83.9 707.96 83.86 C 707.96 83.71 707.93 83.57 707.91 83.42 C 707.89 83.28 707.88 83.14 707.84 83 C 707.81 82.86 707.77 82.73 707.71 82.59 C 707.65 82.4 707.57 82.23 707.48 82.05 C 707.43 81.93 707.36 81.82 707.29 81.7 C 707.25 81.62 707.2 81.56 707.14 81.49 C 705.71 79.34 702.34 77.36 696.85 77.4 C 657 74.28 395.64 171.12 403.31 121.21 C 404.26 116.89 407.54 117.87 410.67 116.75 C 418.34 114.02 428.93 108.68 433.89 102.14 C 439.5 94.74 434.51 90.66 425.79 91.68 C 417.06 92.69 414.27 93.5 377.99 105.14 C 376.54 105.61 374.93 105.08 374.03 103.84 C 372.64 101.93 372.27 100.59 370.8 99.65 C 355.95 90.21 324.53 117.96 309.12 128.23 C 308.62 128.51 308.07 127.97 308.34 127.47 C 311.34 121.86 325.8 95.54 340.11 81.66 C 352.16 68.19 400.08 30.16 395.08 12.87 C 377.9 2.61 326.64 74.11 319.41 88.95 C 266.66 111.9 70.11 185.75 23.17 155.97 C 23.71 155.08 24.04 154.04 24.04 152.92 C 24.04 149.63 21.38 146.96 18.09 146.96 C 15.52 146.96 13.35 148.6 12.52 150.88 C 12.37 151.16 12.26 151.46 12.19 151.79 C 11.52 154.98 12.62 157.48 16.36 159.42 C 34.53 168.82 48.27 167.35 67.73 165.56 C 150.82 157.63 237.27 124.76 314.86 94.65 C 311.98 106.66 284.7 138.61 292.43 149 C 297.06 154.56 304.62 144.89 308.18 141.94 C 315.16 135.66 362.64 96.44 367.66 108.43 C 343.46 119.52 308.02 141.71 296.7 166.73 C 292.23 179.13 298.81 183.88 310.68 179.92 C 329.08 173.78 365.16 143.36 372.81 125.39 C 373.97 122.65 375.45 116.26 376.64 112.56 C 377.08 111.21 378.02 110.07 379.3 109.48 C 387.82 105.5 399.3 102.51 408.29 100.18 C 408.73 100.08 409.57 99.95 409.45 100.56 C 387.57 122.36 395.98 140.19 426.41 139.57 M 428.37 98.59 C 429.29 99.73 411.16 113.17 410.24 111.2 C 409.32 109.21 426.52 96.3 428.37 98.59 M 309.34 173.84 C 305.27 175.45 299.71 177.82 300.84 170.88 C 308.77 148.12 345.96 121.72 368.46 114.36 C 364.63 138.71 330.54 163.98 309.34 173.84 M 391.32 15.85 C 392.23 16.77 388.46 22.46 387.72 23.66 C 373.53 44.7 352.7 63.5 334.57 81.25 C 344.34 64.02 372.94 21.55 391.32 15.85"/><path fill="currentColor" fill-rule="evenodd" d="M 665.73 238.24 L 665.73 206.73 L 674.95 206.73 C 686.74 206.73 693.73 209.52 693.73 222 C 693.73 234.74 685.47 238.24 672.02 238.24 Z M 681.57 241.38 C 690.07 239.85 702.36 235.13 702.36 220.73 C 702.36 205 685.17 202.86 679.3 202.86 L 657.52 202.86 L 657.52 274.42 L 665.73 274.42 L 665.73 242.11 L 671.78 242.11 L 697.62 274.42 L 707.99 274.42 Z M 514.9 272.54 C 501.98 272.54 483.85 268.82 483.85 238.88 C 483.85 209.36 503.77 205.34 514.9 205.34 C 526.03 205.34 545.96 209.36 545.96 238.88 C 545.96 268.82 527.82 272.54 514.9 272.54 M 514.9 201.47 C 494.34 201.47 475.43 212.48 475.43 238.88 C 475.43 269.19 500.52 276.41 514.9 276.41 C 529.29 276.41 554.38 269.19 554.38 238.88 C 554.38 212.48 535.46 201.47 514.9 201.47 M 364.76 274.08 C 364.76 285.3 363.13 292.48 351.71 292.48 L 351.71 296.35 C 365.3 296.35 372.97 287.04 372.97 276.07 L 372.97 202.86 L 364.76 202.86 Z M 215.17 243.71 L 228.59 213.77 L 241.51 243.71 Z M 232.11 201.47 L 229.83 201.47 L 197.14 274.42 L 201.41 274.42 L 213.43 247.58 L 243.18 247.58 L 254.76 274.42 L 263.59 274.42 Z M 86.56 201.47 L 55.52 261.25 L 24.27 201.47 L 21.93 201.47 L 11.96 274.42 L 15.89 274.42 L 23.62 217.92 L 52.13 272.48 L 54.19 272.48 L 82.21 218.31 L 88.85 274.42 L 97.11 274.42 L 88.49 201.47 Z"/></svg><span class="label">Ink on white</span></div>
+        <div class="logo-tile on-blue"><svg viewBox="9.5 0.6 700.5 297.7" role="img" aria-label="Be Major"><path fill="currentColor" fill-rule="evenodd" d="M 426.41 139.57 C 513.91 133.72 600.07 91.98 687.27 83.58 C 689.75 83.43 697.21 83.15 699.54 83.54 C 699.52 83.69 699.5 83.83 699.5 83.98 C 699.5 86.32 701.39 88.22 703.73 88.22 C 706.07 88.22 707.97 86.32 707.97 83.98 C 707.97 83.94 707.96 83.9 707.96 83.86 C 707.96 83.71 707.93 83.57 707.91 83.42 C 707.89 83.28 707.88 83.14 707.84 83 C 707.81 82.86 707.77 82.73 707.71 82.59 C 707.65 82.4 707.57 82.23 707.48 82.05 C 707.43 81.93 707.36 81.82 707.29 81.7 C 707.25 81.62 707.2 81.56 707.14 81.49 C 705.71 79.34 702.34 77.36 696.85 77.4 C 657 74.28 395.64 171.12 403.31 121.21 C 404.26 116.89 407.54 117.87 410.67 116.75 C 418.34 114.02 428.93 108.68 433.89 102.14 C 439.5 94.74 434.51 90.66 425.79 91.68 C 417.06 92.69 414.27 93.5 377.99 105.14 C 376.54 105.61 374.93 105.08 374.03 103.84 C 372.64 101.93 372.27 100.59 370.8 99.65 C 355.95 90.21 324.53 117.96 309.12 128.23 C 308.62 128.51 308.07 127.97 308.34 127.47 C 311.34 121.86 325.8 95.54 340.11 81.66 C 352.16 68.19 400.08 30.16 395.08 12.87 C 377.9 2.61 326.64 74.11 319.41 88.95 C 266.66 111.9 70.11 185.75 23.17 155.97 C 23.71 155.08 24.04 154.04 24.04 152.92 C 24.04 149.63 21.38 146.96 18.09 146.96 C 15.52 146.96 13.35 148.6 12.52 150.88 C 12.37 151.16 12.26 151.46 12.19 151.79 C 11.52 154.98 12.62 157.48 16.36 159.42 C 34.53 168.82 48.27 167.35 67.73 165.56 C 150.82 157.63 237.27 124.76 314.86 94.65 C 311.98 106.66 284.7 138.61 292.43 149 C 297.06 154.56 304.62 144.89 308.18 141.94 C 315.16 135.66 362.64 96.44 367.66 108.43 C 343.46 119.52 308.02 141.71 296.7 166.73 C 292.23 179.13 298.81 183.88 310.68 179.92 C 329.08 173.78 365.16 143.36 372.81 125.39 C 373.97 122.65 375.45 116.26 376.64 112.56 C 377.08 111.21 378.02 110.07 379.3 109.48 C 387.82 105.5 399.3 102.51 408.29 100.18 C 408.73 100.08 409.57 99.95 409.45 100.56 C 387.57 122.36 395.98 140.19 426.41 139.57 M 428.37 98.59 C 429.29 99.73 411.16 113.17 410.24 111.2 C 409.32 109.21 426.52 96.3 428.37 98.59 M 309.34 173.84 C 305.27 175.45 299.71 177.82 300.84 170.88 C 308.77 148.12 345.96 121.72 368.46 114.36 C 364.63 138.71 330.54 163.98 309.34 173.84 M 391.32 15.85 C 392.23 16.77 388.46 22.46 387.72 23.66 C 373.53 44.7 352.7 63.5 334.57 81.25 C 344.34 64.02 372.94 21.55 391.32 15.85"/><path fill="currentColor" fill-rule="evenodd" d="M 665.73 238.24 L 665.73 206.73 L 674.95 206.73 C 686.74 206.73 693.73 209.52 693.73 222 C 693.73 234.74 685.47 238.24 672.02 238.24 Z M 681.57 241.38 C 690.07 239.85 702.36 235.13 702.36 220.73 C 702.36 205 685.17 202.86 679.3 202.86 L 657.52 202.86 L 657.52 274.42 L 665.73 274.42 L 665.73 242.11 L 671.78 242.11 L 697.62 274.42 L 707.99 274.42 Z M 514.9 272.54 C 501.98 272.54 483.85 268.82 483.85 238.88 C 483.85 209.36 503.77 205.34 514.9 205.34 C 526.03 205.34 545.96 209.36 545.96 238.88 C 545.96 268.82 527.82 272.54 514.9 272.54 M 514.9 201.47 C 494.34 201.47 475.43 212.48 475.43 238.88 C 475.43 269.19 500.52 276.41 514.9 276.41 C 529.29 276.41 554.38 269.19 554.38 238.88 C 554.38 212.48 535.46 201.47 514.9 201.47 M 364.76 274.08 C 364.76 285.3 363.13 292.48 351.71 292.48 L 351.71 296.35 C 365.3 296.35 372.97 287.04 372.97 276.07 L 372.97 202.86 L 364.76 202.86 Z M 215.17 243.71 L 228.59 213.77 L 241.51 243.71 Z M 232.11 201.47 L 229.83 201.47 L 197.14 274.42 L 201.41 274.42 L 213.43 247.58 L 243.18 247.58 L 254.76 274.42 L 263.59 274.42 Z M 86.56 201.47 L 55.52 261.25 L 24.27 201.47 L 21.93 201.47 L 11.96 274.42 L 15.89 274.42 L 23.62 217.92 L 52.13 272.48 L 54.19 272.48 L 82.21 218.31 L 88.85 274.42 L 97.11 274.42 L 88.49 201.47 Z"/></svg><span class="label">White on Be Major Blue</span></div>
+        <div class="logo-tile on-ink"><svg viewBox="9.5 0.6 700.5 297.7" role="img" aria-label="Be Major"><path fill="currentColor" fill-rule="evenodd" d="M 426.41 139.57 C 513.91 133.72 600.07 91.98 687.27 83.58 C 689.75 83.43 697.21 83.15 699.54 83.54 C 699.52 83.69 699.5 83.83 699.5 83.98 C 699.5 86.32 701.39 88.22 703.73 88.22 C 706.07 88.22 707.97 86.32 707.97 83.98 C 707.97 83.94 707.96 83.9 707.96 83.86 C 707.96 83.71 707.93 83.57 707.91 83.42 C 707.89 83.28 707.88 83.14 707.84 83 C 707.81 82.86 707.77 82.73 707.71 82.59 C 707.65 82.4 707.57 82.23 707.48 82.05 C 707.43 81.93 707.36 81.82 707.29 81.7 C 707.25 81.62 707.2 81.56 707.14 81.49 C 705.71 79.34 702.34 77.36 696.85 77.4 C 657 74.28 395.64 171.12 403.31 121.21 C 404.26 116.89 407.54 117.87 410.67 116.75 C 418.34 114.02 428.93 108.68 433.89 102.14 C 439.5 94.74 434.51 90.66 425.79 91.68 C 417.06 92.69 414.27 93.5 377.99 105.14 C 376.54 105.61 374.93 105.08 374.03 103.84 C 372.64 101.93 372.27 100.59 370.8 99.65 C 355.95 90.21 324.53 117.96 309.12 128.23 C 308.62 128.51 308.07 127.97 308.34 127.47 C 311.34 121.86 325.8 95.54 340.11 81.66 C 352.16 68.19 400.08 30.16 395.08 12.87 C 377.9 2.61 326.64 74.11 319.41 88.95 C 266.66 111.9 70.11 185.75 23.17 155.97 C 23.71 155.08 24.04 154.04 24.04 152.92 C 24.04 149.63 21.38 146.96 18.09 146.96 C 15.52 146.96 13.35 148.6 12.52 150.88 C 12.37 151.16 12.26 151.46 12.19 151.79 C 11.52 154.98 12.62 157.48 16.36 159.42 C 34.53 168.82 48.27 167.35 67.73 165.56 C 150.82 157.63 237.27 124.76 314.86 94.65 C 311.98 106.66 284.7 138.61 292.43 149 C 297.06 154.56 304.62 144.89 308.18 141.94 C 315.16 135.66 362.64 96.44 367.66 108.43 C 343.46 119.52 308.02 141.71 296.7 166.73 C 292.23 179.13 298.81 183.88 310.68 179.92 C 329.08 173.78 365.16 143.36 372.81 125.39 C 373.97 122.65 375.45 116.26 376.64 112.56 C 377.08 111.21 378.02 110.07 379.3 109.48 C 387.82 105.5 399.3 102.51 408.29 100.18 C 408.73 100.08 409.57 99.95 409.45 100.56 C 387.57 122.36 395.98 140.19 426.41 139.57 M 428.37 98.59 C 429.29 99.73 411.16 113.17 410.24 111.2 C 409.32 109.21 426.52 96.3 428.37 98.59 M 309.34 173.84 C 305.27 175.45 299.71 177.82 300.84 170.88 C 308.77 148.12 345.96 121.72 368.46 114.36 C 364.63 138.71 330.54 163.98 309.34 173.84 M 391.32 15.85 C 392.23 16.77 388.46 22.46 387.72 23.66 C 373.53 44.7 352.7 63.5 334.57 81.25 C 344.34 64.02 372.94 21.55 391.32 15.85"/><path fill="currentColor" fill-rule="evenodd" d="M 665.73 238.24 L 665.73 206.73 L 674.95 206.73 C 686.74 206.73 693.73 209.52 693.73 222 C 693.73 234.74 685.47 238.24 672.02 238.24 Z M 681.57 241.38 C 690.07 239.85 702.36 235.13 702.36 220.73 C 702.36 205 685.17 202.86 679.3 202.86 L 657.52 202.86 L 657.52 274.42 L 665.73 274.42 L 665.73 242.11 L 671.78 242.11 L 697.62 274.42 L 707.99 274.42 Z M 514.9 272.54 C 501.98 272.54 483.85 268.82 483.85 238.88 C 483.85 209.36 503.77 205.34 514.9 205.34 C 526.03 205.34 545.96 209.36 545.96 238.88 C 545.96 268.82 527.82 272.54 514.9 272.54 M 514.9 201.47 C 494.34 201.47 475.43 212.48 475.43 238.88 C 475.43 269.19 500.52 276.41 514.9 276.41 C 529.29 276.41 554.38 269.19 554.38 238.88 C 554.38 212.48 535.46 201.47 514.9 201.47 M 364.76 274.08 C 364.76 285.3 363.13 292.48 351.71 292.48 L 351.71 296.35 C 365.3 296.35 372.97 287.04 372.97 276.07 L 372.97 202.86 L 364.76 202.86 Z M 215.17 243.71 L 228.59 213.77 L 241.51 243.71 Z M 232.11 201.47 L 229.83 201.47 L 197.14 274.42 L 201.41 274.42 L 213.43 247.58 L 243.18 247.58 L 254.76 274.42 L 263.59 274.42 Z M 86.56 201.47 L 55.52 261.25 L 24.27 201.47 L 21.93 201.47 L 11.96 274.42 L 15.89 274.42 L 23.62 217.92 L 52.13 272.48 L 54.19 272.48 L 82.21 218.31 L 88.85 274.42 L 97.11 274.42 L 88.49 201.47 Z"/></svg><span class="label">White on Ink</span></div>
+      </div>
+      <ul class="logo-notes">
+        <li>Always the version without “Foundation”.</li>
+        <li>Don’t recolor it in coral, teal or periwinkle, stretch it, outline it or add effects.</li>
+        <li>Leave clear space around it at least the height of the “M” in MAJOR.</li>
+        <li>Smallest size: about 96px wide on screen, so the swash stays visible.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label tag" style="background: var(--coral-deep)">Color</span>
+        <h2 class="display">Color</h2>
+        <p>Be Major Blue anchors everything. Coral, teal and periwinkle are color fields: large blocks behind dark text. Each has a deeper shade for headings, labels and links on white. Click any hex code to copy it.</p>
+      </div>
+
+      <h3 class="label">Brand colors</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#4A80CF;color:#fff"><span class="display">Blue</span></div><div class="meta"><span class="name">Be Major Blue</span><button class="copy" type="button" data-hex="#4A80CF">#4A80CF</button><span class="codes">RGB 74, 128, 207</span><span class="role">The anchor: hero, Pillars, marquee, tiles. Large type only.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#FF7A66;color:#16181D"><span class="display">Coral</span></div><div class="meta"><span class="name">Coral</span><button class="copy" type="button" data-hex="#FF7A66">#FF7A66</button><span class="codes">RGB 255, 122, 102</span><span class="role">Color field. Ink text on top.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#2BB8A8;color:#16181D"><span class="display">Teal</span></div><div class="meta"><span class="name">Teal</span><button class="copy" type="button" data-hex="#2BB8A8">#2BB8A8</button><span class="codes">RGB 43, 184, 168</span><span class="role">Color field. Ink text on top.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#9A9CF2;color:#16181D"><span class="display">Periwinkle</span></div><div class="meta"><span class="name">Periwinkle</span><button class="copy" type="button" data-hex="#9A9CF2">#9A9CF2</button><span class="codes">RGB 154, 156, 242</span><span class="role">Color field. Ink text on top.</span></div></div>
+      </div>
+
+      <h3 class="label">Deep shades for text</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#2F64B3;color:#fff"><span class="display">Blue Deep</span></div><div class="meta"><span class="name">Blue Deep</span><button class="copy" type="button" data-hex="#2F64B3">#2F64B3</button><span class="codes">RGB 47, 100, 179</span><span class="role">Links, small blue text, buttons on hover.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#B8402F;color:#fff"><span class="display">Coral Deep</span></div><div class="meta"><span class="name">Coral Deep</span><button class="copy" type="button" data-hex="#B8402F">#B8402F</button><span class="codes">RGB 184, 64, 47</span><span class="role">Coral-family labels and headings on white.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#0D7468;color:#fff"><span class="display">Teal Deep</span></div><div class="meta"><span class="name">Teal Deep</span><button class="copy" type="button" data-hex="#0D7468">#0D7468</button><span class="codes">RGB 13, 116, 104</span><span class="role">Teal-family labels; success messages.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#5450C4;color:#fff"><span class="display">Peri Deep</span></div><div class="meta"><span class="name">Periwinkle Deep</span><button class="copy" type="button" data-hex="#5450C4">#5450C4</button><span class="codes">RGB 84, 80, 196</span><span class="role">Periwinkle-family labels and headings on white.</span></div></div>
+      </div>
+
+      <h3 class="label">Neutrals</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#16181D;color:#fff"><span class="display">Ink</span></div><div class="meta"><span class="name">Ink</span><button class="copy" type="button" data-hex="#16181D">#16181D</button><span class="codes">RGB 22, 24, 29</span><span class="role">Body text, buttons, footer.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#111111;color:#fff"><span class="display">Black</span></div><div class="meta"><span class="name">Black</span><button class="copy" type="button" data-hex="#111111">#111111</button><span class="codes">RGB 17, 17, 17</span><span class="role">The hero “Make it ___” words.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#F3F3F1;color:#16181D;outline:1px solid rgb(22 24 29 / 0.14);outline-offset:-1px"><span class="display">Grey</span></div><div class="meta"><span class="name">Light Grey</span><button class="copy" type="button" data-hex="#F3F3F1">#F3F3F1</button><span class="codes">RGB 243, 243, 241</span><span class="role">Section grounds (Mission, Join).</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;color:#16181D;outline:1px solid rgb(22 24 29 / 0.14);outline-offset:-1px"><span class="display">White</span></div><div class="meta"><span class="name">White</span><button class="copy" type="button" data-hex="#FFFFFF">#FFFFFF</button><span class="codes">RGB 255, 255, 255</span><span class="role">Page ground, the frame.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label tag" style="background: var(--teal-deep)">Contrast</span>
+        <h2 class="display">Text on color</h2>
+        <p>These pairings keep every word readable (WCAG AA). Ratios are text against the background.</p>
+      </div>
+      <div class="rules">
+        <div class="rule-card" style="outline:1px solid var(--rule);outline-offset:-1px">
+          <div class="demo"><span style="background:#FF7A66;color:#16181D">Ink</span><span style="background:#2BB8A8;color:#16181D">Ink</span><span style="background:#9A9CF2;color:#16181D">Ink</span></div>
+          <p><span class="verdict yes">Use:</span> Ink on coral, teal and periwinkle, at any size. About 7:1.</p>
+        </div>
+        <div class="rule-card" style="outline:1px solid var(--rule);outline-offset:-1px">
+          <div class="demo"><span style="background:#FF7A66;color:#fff">White</span><span style="background:#2BB8A8;color:#fff">White</span><span style="background:#9A9CF2;color:#fff">White</span></div>
+          <p><span class="verdict no">Avoid:</span> white text on coral, teal or periwinkle. About 2.5:1, too faint at any size.</p>
+        </div>
+        <div class="rule-card" style="outline:1px solid var(--rule);outline-offset:-1px">
+          <div class="demo"><span style="background:#4A80CF;color:#fff">Large</span><span style="background:#4A80CF;color:#16181D">Large</span></div>
+          <p><span class="verdict yes">Use with care:</span> on Be Major Blue, white or Ink text only at 24px and up (about 4:1). For smaller text on blue, switch the background to Blue Deep.</p>
+        </div>
+        <div class="rule-card" style="outline:1px solid var(--rule);outline-offset:-1px">
+          <div class="demo"><span style="background:#fff;color:#2F64B3;outline:1px solid var(--rule)">Link</span><span style="background:#fff;color:#4A80CF;outline:1px solid var(--rule)">Link</span></div>
+          <p><span class="verdict yes">Use:</span> Blue Deep for links and small blue text on white (5.8:1). <span class="verdict no">Avoid:</span> Be Major Blue for small text (4:1).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label tag" style="background: var(--peri-deep)">Type</span>
+        <h2 class="display">Typography</h2>
+        <p>Two free Google Fonts. Anton for headlines, always in capitals. Jost for everything else.</p>
+      </div>
+      <div class="type-grid">
+        <div class="type-row">
+          <div class="type-spec"><span class="face">Anton Regular</span><dl><dt>Use</dt><dd>Hero line, section headlines</dd><dt>Case</dt><dd>ALL CAPS</dd><dt>Line height</dt><dd>1.0</dd><dt>Tracking</dt><dd>+0.005em (Canva: 5)</dd><dt>Get it</dt><dd><a href="https://fonts.google.com/specimen/Anton" target="_blank" rel="noopener">fonts.google.com/specimen/Anton</a></dd></dl></div>
+          <div class="sample display s-hero">Make it Major</div>
+        </div>
+        <div class="type-row">
+          <div class="type-spec"><span class="face">Anton Regular, section size</span><dl><dt>Use</dt><dd>Headings such as Pillars, Programs</dd><dt>Size</dt><dd>40–72px on the web</dd></dl></div>
+          <div class="sample display s-head">Good things happen in good company</div>
+        </div>
+        <div class="type-row">
+          <div class="type-spec"><span class="face">Jost Light 300</span><dl><dt>Use</dt><dd>Large intro statements (Mission, About)</dd><dt>Size</dt><dd>24–36px</dd><dt>Line height</dt><dd>1.3</dd><dt>Get it</dt><dd><a href="https://fonts.google.com/specimen/Jost" target="_blank" rel="noopener">fonts.google.com/specimen/Jost</a></dd></dl></div>
+          <p class="sample s-intro">Be Major expands access to education, culture, and opportunity through engaging programs and experiences.</p>
+        </div>
+        <div class="type-row">
+          <div class="type-spec"><span class="face">Jost Regular 400</span><dl><dt>Use</dt><dd>Body copy, emails, forms</dd><dt>Size</dt><dd>16–18px</dd><dt>Line height</dt><dd>1.6</dd></dl></div>
+          <p class="sample s-body">We collaborate with educators, brands, and community partners to turn ideas into experiences people can learn from and participate in. Through workshops, cultural programming, and hands-on learning, we create opportunities for connection, discovery, and practical growth.</p>
+        </div>
+        <div class="type-row">
+          <div class="type-spec"><span class="face">Jost Medium 500</span><dl><dt>Use</dt><dd>Labels, nav, buttons, tags</dd><dt>Case</dt><dd>ALL CAPS</dd><dt>Tracking</dt><dd>0.22em, very wide (Canva: about 220)</dd><dt>Size</dt><dd>11–14px</dd></dl></div>
+          <div class="sample" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+            <span class="label s-label">Community. Opportunity. Impact.</span>
+            <span class="label s-button">Keep me posted</span>
+            <span class="label tag" style="background:#B8402F">Vision</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label tag" style="background: var(--ink)">For developers</span>
+        <h2 class="display">Tokens</h2>
+        <p>The same values as CSS variables, as used on be-major.com.</p>
+      </div>
+      <div class="tok-actions"><button class="copy" type="button" id="copy-tokens" data-target="tokens">Copy all</button></div>
+      <pre class="tokens" id="tokens">--color-blue: #4a80cf;
+--color-blue-deep: #2f64b3;
+--color-coral: #ff7a66;
+--color-coral-deep: #b8402f;
+--color-teal: #2bb8a8;
+--color-teal-deep: #0d7468;
+--color-periwinkle: #9a9cf2;
+--color-periwinkle-deep: #5450c4;
+--color-ink: #16181d;
+--color-black: #111111;
+--color-grey: #f3f3f1;
+--color-white: #ffffff;
+--font-display: "Anton", sans-serif;   /* 400, uppercase, line-height 1 */
+--font-body: "Jost", sans-serif;       /* 300 / 400 / 500; labels 0.22em tracking */</pre>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg viewBox="9.5 0.6 700.5 297.7" role="img" aria-label="Be Major"><path fill="currentColor" fill-rule="evenodd" d="M 426.41 139.57 C 513.91 133.72 600.07 91.98 687.27 83.58 C 689.75 83.43 697.21 83.15 699.54 83.54 C 699.52 83.69 699.5 83.83 699.5 83.98 C 699.5 86.32 701.39 88.22 703.73 88.22 C 706.07 88.22 707.97 86.32 707.97 83.98 C 707.97 83.94 707.96 83.9 707.96 83.86 C 707.96 83.71 707.93 83.57 707.91 83.42 C 707.89 83.28 707.88 83.14 707.84 83 C 707.81 82.86 707.77 82.73 707.71 82.59 C 707.65 82.4 707.57 82.23 707.48 82.05 C 707.43 81.93 707.36 81.82 707.29 81.7 C 707.25 81.62 707.2 81.56 707.14 81.49 C 705.71 79.34 702.34 77.36 696.85 77.4 C 657 74.28 395.64 171.12 403.31 121.21 C 404.26 116.89 407.54 117.87 410.67 116.75 C 418.34 114.02 428.93 108.68 433.89 102.14 C 439.5 94.74 434.51 90.66 425.79 91.68 C 417.06 92.69 414.27 93.5 377.99 105.14 C 376.54 105.61 374.93 105.08 374.03 103.84 C 372.64 101.93 372.27 100.59 370.8 99.65 C 355.95 90.21 324.53 117.96 309.12 128.23 C 308.62 128.51 308.07 127.97 308.34 127.47 C 311.34 121.86 325.8 95.54 340.11 81.66 C 352.16 68.19 400.08 30.16 395.08 12.87 C 377.9 2.61 326.64 74.11 319.41 88.95 C 266.66 111.9 70.11 185.75 23.17 155.97 C 23.71 155.08 24.04 154.04 24.04 152.92 C 24.04 149.63 21.38 146.96 18.09 146.96 C 15.52 146.96 13.35 148.6 12.52 150.88 C 12.37 151.16 12.26 151.46 12.19 151.79 C 11.52 154.98 12.62 157.48 16.36 159.42 C 34.53 168.82 48.27 167.35 67.73 165.56 C 150.82 157.63 237.27 124.76 314.86 94.65 C 311.98 106.66 284.7 138.61 292.43 149 C 297.06 154.56 304.62 144.89 308.18 141.94 C 315.16 135.66 362.64 96.44 367.66 108.43 C 343.46 119.52 308.02 141.71 296.7 166.73 C 292.23 179.13 298.81 183.88 310.68 179.92 C 329.08 173.78 365.16 143.36 372.81 125.39 C 373.97 122.65 375.45 116.26 376.64 112.56 C 377.08 111.21 378.02 110.07 379.3 109.48 C 387.82 105.5 399.3 102.51 408.29 100.18 C 408.73 100.08 409.57 99.95 409.45 100.56 C 387.57 122.36 395.98 140.19 426.41 139.57 M 428.37 98.59 C 429.29 99.73 411.16 113.17 410.24 111.2 C 409.32 109.21 426.52 96.3 428.37 98.59 M 309.34 173.84 C 305.27 175.45 299.71 177.82 300.84 170.88 C 308.77 148.12 345.96 121.72 368.46 114.36 C 364.63 138.71 330.54 163.98 309.34 173.84 M 391.32 15.85 C 392.23 16.77 388.46 22.46 387.72 23.66 C 373.53 44.7 352.7 63.5 334.57 81.25 C 344.34 64.02 372.94 21.55 391.32 15.85"/><path fill="currentColor" fill-rule="evenodd" d="M 665.73 238.24 L 665.73 206.73 L 674.95 206.73 C 686.74 206.73 693.73 209.52 693.73 222 C 693.73 234.74 685.47 238.24 672.02 238.24 Z M 681.57 241.38 C 690.07 239.85 702.36 235.13 702.36 220.73 C 702.36 205 685.17 202.86 679.3 202.86 L 657.52 202.86 L 657.52 274.42 L 665.73 274.42 L 665.73 242.11 L 671.78 242.11 L 697.62 274.42 L 707.99 274.42 Z M 514.9 272.54 C 501.98 272.54 483.85 268.82 483.85 238.88 C 483.85 209.36 503.77 205.34 514.9 205.34 C 526.03 205.34 545.96 209.36 545.96 238.88 C 545.96 268.82 527.82 272.54 514.9 272.54 M 514.9 201.47 C 494.34 201.47 475.43 212.48 475.43 238.88 C 475.43 269.19 500.52 276.41 514.9 276.41 C 529.29 276.41 554.38 269.19 554.38 238.88 C 554.38 212.48 535.46 201.47 514.9 201.47 M 364.76 274.08 C 364.76 285.3 363.13 292.48 351.71 292.48 L 351.71 296.35 C 365.3 296.35 372.97 287.04 372.97 276.07 L 372.97 202.86 L 364.76 202.86 Z M 215.17 243.71 L 228.59 213.77 L 241.51 243.71 Z M 232.11 201.47 L 229.83 201.47 L 197.14 274.42 L 201.41 274.42 L 213.43 247.58 L 243.18 247.58 L 254.76 274.42 L 263.59 274.42 Z M 86.56 201.47 L 55.52 261.25 L 24.27 201.47 L 21.93 201.47 L 11.96 274.42 L 15.89 274.42 L 23.62 217.92 L 52.13 272.48 L 54.19 272.48 L 82.21 218.31 L 88.85 274.42 L 97.11 274.42 L 88.49 201.47 Z"/></svg>
+    <p>© 2026 Be Major. An initiative of BRAE Media LLC.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".copy");
+  if (!btn) return;
+  const text = btn.dataset.hex || document.getElementById(btn.dataset.target)?.textContent || "";
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.classList.add("done");
+    setTimeout(() => btn.classList.remove("done"), 1400);
+  } catch {
+    const range = document.createRange();
+    const node = btn.dataset.target ? document.getElementById(btn.dataset.target) : btn;
+    range.selectNodeContents(node);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+});
+</script>
+
+</body>
+</html>
