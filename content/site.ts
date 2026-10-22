@@ -210,9 +210,10 @@ export const footer = {
   terms: { label: "Terms", href: "/terms" },
 };
 
-// Legal pages. Drafted from what the site actually does (signup form to
-// Flodesk, Vercel hosting, no analytics, no cookies). The `draft` flag
-// keeps the DRAFT banner up and blocks launch until Brae's review is done.
+// Legal pages, written from what the site actually does (signup form to
+// Flodesk, Vercel hosting, no analytics, no cookies). Approved by Brae on
+// Oct 22, 2026. For a future revision, set `draft` to a flagged() value:
+// it shows a DRAFT banner and blocks a launched build until cleared.
 // Rendered in order: paragraphs, then list, then after, then address.
 export type LegalSection = {
   heading: string;
@@ -238,7 +239,6 @@ export const privacy: LegalPage = {
   title: "Privacy Policy",
   description: "How Be Major collects, uses and protects the information you share with us.",
   updated: LEGAL_UPDATED,
-  draft: flagged("review", "Draft for review", "Privacy policy to be reviewed before launch"),
   intro: [
     `This Privacy Policy explains what information ${OPERATOR} (“Be Major,” “we,” “us”) collects through be-major.com (the “Site”), how we use it, and the choices you have. We keep this short because the Site collects very little.`,
   ],
@@ -325,7 +325,6 @@ export const terms: LegalPage = {
   title: "Terms of Use",
   description: "The terms that apply when you use be-major.com.",
   updated: LEGAL_UPDATED,
-  draft: flagged("review", "Draft for review", "Terms to be reviewed before launch"),
   intro: [
     `These Terms of Use apply to your use of be-major.com (the “Site”), operated by ${OPERATOR} (“Be Major,” “we,” “us”). By using the Site, you agree to these terms.`,
   ],
