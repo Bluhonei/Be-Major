@@ -58,7 +58,7 @@ export function MediaSlot({
         </>
       ) : (
         mark ? (
-          <ProgramMark slug={mark} className="absolute inset-[12%]" />
+          <ProgramMark slug={mark} className="absolute top-[12%] left-[12%] h-[76%] w-[76%]" />
         ) : (
           <span className="absolute inset-[22%] rotate-45 bg-[var(--color-white)] opacity-40" />
         )
