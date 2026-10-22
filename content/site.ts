@@ -232,7 +232,7 @@ export type LegalPage = {
 
 const OPERATOR = "Be Major, an initiative of BRAE Media LLC";
 const LEGAL_UPDATED = "October 22, 2026";
-const LEGAL_CONTACT = [OPERATOR, "101 Hudson St, 21st Fl, Jersey City, NJ 07302", "hello@be-major.com"];
+const LEGAL_CONTACT = ["Be Major c/o BRAE Media LLC", "101 Hudson St, 21st Fl, Jersey City, NJ 07302", "hello@be-major.com"];
 
 export const privacy: LegalPage = {
   title: "Privacy Policy",
