@@ -32,3 +32,24 @@ Snapshot taken Oct 22, 2026, before any changes. This is the rollback copy.
 - DKIM (`TXT google._domainkey …` from Google Admin)
 - DMARC (`TXT _dmarc …`)
 - Flodesk domain authentication records
+
+## Website switch to Vercel (records from Vercel → be-major → Domains)
+Primary domain: **be-major.com** (Production). www.be-major.com: 308 redirect to be-major.com.
+
+1. Delete the Squarespace Defaults preset (A @ 198.49.23.145, CNAME www ext-sq.squarespace.com).
+2. Add custom records:
+
+| Type | Name | Data |
+|---|---|---|
+| A | @ | 216.150.1.1 |
+| CNAME | www | cc7202c30c64719e.vercel-dns-016.com |
+
+Vercel's legacy values (76.76.21.21 / cname.vercel-dns.com) also work, but the values above are the ones Vercel recommends for this project.
+
+3. Leave all Google records, the `76781023` CNAME (Google account-recovery check) and `_domainconnect` untouched.
+4. Once both domains show Valid Configuration in Vercel, merge the launch switch (`LAUNCHED = true`).
+
+## Temporary
+| Type | Name | Data | Why |
+|---|---|---|---|
+| CNAME | 76781023 | google.com | Google Workspace admin recovery for hello@be-major.com (case 76781023). Delete after the review closes. |
