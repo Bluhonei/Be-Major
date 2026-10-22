@@ -1,24 +1,27 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/logo";
 import { nav, ui } from "@/content/site";
 
 // Transparent over the hero, solid once the hero has scrolled under it.
-export function Header() {
-  const [solid, setSolid] = useState(false);
+// Pages without a hero pass `alwaysSolid`.
+export function Header({ alwaysSolid = false }: { alwaysSolid?: boolean }) {
+  const [scrolled, setSolid] = useState(false);
+  const solid = alwaysSolid || scrolled;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const hero = document.getElementById("top");
-    if (!hero) return;
+    if (alwaysSolid || !hero) return;
     const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 80;
     const io = new IntersectionObserver(([e]) => setSolid(!e.isIntersecting), {
       rootMargin: `-${header}px 0px 0px 0px`,
     });
     io.observe(hero);
     return () => io.disconnect();
-  }, []);
+  }, [alwaysSolid]);
 
   useEffect(() => {
     if (!open) return;
@@ -32,9 +35,9 @@ export function Header() {
   return (
     <header className={`site-header ${solid || open ? "is-solid" : ""}`}>
       <div className="flex h-full items-center justify-between px-4 md:px-8">
-        <a href="#top" className="site-header__logo hit block w-24 md:w-32" tabIndex={solid ? 0 : -1} aria-hidden={!solid}>
+        <Link href="/#top" className="site-header__logo hit block w-24 md:w-32" tabIndex={solid ? 0 : -1} aria-hidden={!solid}>
           <Logo className="h-auto w-full" />
-        </a>
+        </Link>
         <nav aria-label="Sections" className="hidden lg:block">
           <ul className={`t-label flex gap-6 text-xs ${solid ? "" : pill}`}>
             {nav.map((n) => (

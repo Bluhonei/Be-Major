@@ -49,15 +49,15 @@ export const ui = {
 };
 
 export const nav = [
-  { href: "#about", label: "About" },
-  { href: "#mission", label: "Mission" },
-  { href: "#programs", label: "Programs" },
-  { href: "#join", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#mission", label: "Mission" },
+  { href: "/#programs", label: "Programs" },
+  { href: "/#join", label: "Contact" },
 ];
 
 // Fixed corner tab, bottom-right.
 export const cornerTab = {
-  join: { label: "Join Us", href: "#join" },
+  join: { label: "Join Us", href: "/#join" },
 };
 
 export const hero = {
@@ -205,8 +205,177 @@ export const join = {
   },
 };
 
-// Be Major uses BRAE Media's policies on the Bluhoneí site.
 export const footer = {
-  privacy: { label: "Privacy", href: "https://bluhonei.com/privacy-policy" },
-  terms: { label: "Terms", href: "https://bluhonei.com/terms-of-service" },
+  privacy: { label: "Privacy", href: "/privacy" },
+  terms: { label: "Terms", href: "/terms" },
+};
+
+// Legal pages. Drafted from what the site actually does (signup form to
+// Flodesk, Vercel hosting, no analytics, no cookies). The `draft` flag
+// keeps the DRAFT banner up and blocks launch until Brae's review is done.
+// Rendered in order: paragraphs, then list, then after.
+export type LegalSection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
+export type LegalPage = {
+  title: string;
+  description: string;
+  updated: string;
+  draft?: Flagged;
+  intro: string[];
+  sections: LegalSection[];
+};
+
+const OPERATOR = "Be Major, an initiative of BRAE Media LLC";
+const LEGAL_UPDATED = "October 22, 2026";
+
+export const privacy: LegalPage = {
+  title: "Privacy Policy",
+  description: "How Be Major collects, uses and protects the information you share with us.",
+  updated: LEGAL_UPDATED,
+  draft: flagged("review", "Draft for review", "Privacy policy to be reviewed before launch"),
+  intro: [
+    `This Privacy Policy explains what information ${OPERATOR} (“Be Major,” “we,” “us”) collects through be-major.com (the “Site”), how we use it, and the choices you have. We keep this short because the Site collects very little.`,
+  ],
+  sections: [
+    {
+      heading: "What we collect",
+      paragraphs: ["We collect information only when you choose to give it to us by signing up for updates. The signup form asks for:"],
+      list: [
+        "Your first name, last name and email address.",
+        "The topics you're interested in, if you choose any: Programs, Events or Community Opportunities.",
+        "Your consent to receive Be Major emails, which you give by ticking the opt-in box.",
+      ],
+    },
+    {
+      heading: "Information collected automatically",
+      paragraphs: [
+        "The Site does not use cookies, analytics, advertising pixels or tracking tools.",
+        "Like any website, the Site is delivered by a hosting provider, Vercel, which processes technical information such as your IP address, browser type and the pages requested in order to serve the Site and keep it secure. When you submit the signup form, we also use your IP address briefly to limit repeated submissions and prevent spam. We do not store it with your signup.",
+      ],
+    },
+    {
+      heading: "How we use your information",
+      list: [
+        "To send you emails about Be Major programs, events and opportunities to get involved.",
+        "To tailor those emails to the interests you selected.",
+        "To confirm your subscription. We send a confirmation email, and you're added to our list only after you confirm.",
+        "To respond to you when you email us.",
+      ],
+      after: ["We do not sell or rent your personal information."],
+    },
+    {
+      heading: "Who we share it with",
+      paragraphs: [
+        "We use a small number of service providers who process information on our behalf:",
+      ],
+      list: [
+        "Flodesk, our email provider, which stores your signup details and sends our emails.",
+        "Vercel, which hosts the Site.",
+      ],
+    },
+    {
+      heading: "Your choices",
+      list: [
+        "Unsubscribe at any time using the link at the bottom of any Be Major email.",
+        "Ask us to access, correct or delete your information by emailing hello@be-major.com.",
+      ],
+      after: ["We'll respond within a reasonable time and as required by applicable law."],
+    },
+    {
+      heading: "How long we keep it",
+      paragraphs: [
+        "We keep your signup information while you're subscribed. If you unsubscribe or ask us to delete your information, we'll remove it or keep only what we need to honor your request, such as a record that you've unsubscribed.",
+      ],
+    },
+    {
+      heading: "Links to other sites",
+      paragraphs: [
+        "The Site links to our Instagram and LinkedIn pages. Those services have their own privacy policies, and we're not responsible for how they handle your information.",
+      ],
+    },
+    {
+      heading: "Children",
+      paragraphs: [
+        "The signup form is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has signed up, email us and we'll remove the information.",
+      ],
+    },
+    {
+      heading: "Changes to this policy",
+      paragraphs: [
+        "If we change this policy, we'll post the updated version here and change the date at the top.",
+      ],
+    },
+    {
+      heading: "Contact",
+      paragraphs: [`${OPERATOR}. Email hello@be-major.com.`],
+    },
+  ],
+};
+
+export const terms: LegalPage = {
+  title: "Terms of Use",
+  description: "The terms that apply when you use be-major.com.",
+  updated: LEGAL_UPDATED,
+  draft: flagged("review", "Draft for review", "Terms to be reviewed before launch"),
+  intro: [
+    `These Terms of Use apply to your use of be-major.com (the “Site”), operated by ${OPERATOR} (“Be Major,” “we,” “us”). By using the Site, you agree to these terms.`,
+  ],
+  sections: [
+    {
+      heading: "Using the Site",
+      paragraphs: [
+        "You may use the Site for your own personal, non-commercial purposes. Please don't misuse it, including by interfering with how it works, attempting to access it in unauthorized ways, or submitting false or automated signups.",
+      ],
+    },
+    {
+      heading: "Our content",
+      paragraphs: [
+        "The Site's content, including text, graphics, the Be Major name and logo, belongs to BRAE Media LLC. You may not copy, modify or reuse it without our written permission, except as allowed by law.",
+      ],
+    },
+    {
+      heading: "Email updates",
+      paragraphs: [
+        "If you sign up for updates, you agree to receive emails from Be Major about programs, events and opportunities. You can unsubscribe at any time. Our Privacy Policy explains how we handle your information.",
+      ],
+    },
+    {
+      heading: "Programs and events",
+      paragraphs: [
+        "Information on the Site about programs, events and their timing is provided for general information and may change. Listing a program or date on the Site is not a guarantee that it will take place as described.",
+      ],
+    },
+    {
+      heading: "Links to other sites",
+      paragraphs: [
+        "The Site links to third-party services such as Instagram and LinkedIn. We don't control those sites and aren't responsible for their content or practices.",
+      ],
+    },
+    {
+      heading: "No warranties",
+      paragraphs: [
+        'The Site is provided “as is” and “as available.” To the fullest extent permitted by law, we make no warranties of any kind about the Site, including that it will be uninterrupted or error-free.',
+      ],
+    },
+    {
+      heading: "Limitation of liability",
+      paragraphs: [
+        "To the fullest extent permitted by law, BRAE Media LLC will not be liable for any indirect, incidental or consequential damages arising from your use of the Site.",
+      ],
+    },
+    {
+      heading: "Changes to these terms",
+      paragraphs: [
+        "We may update these terms from time to time. We'll post the updated version here and change the date at the top. Continuing to use the Site after an update means you accept the revised terms.",
+      ],
+    },
+    {
+      heading: "Contact",
+      paragraphs: [`${OPERATOR}. Email hello@be-major.com.`],
+    },
+  ],
+};
+
+export const legalUi = {
+  lastUpdated: "Last updated",
+  back: "Back to Be Major",
 };
