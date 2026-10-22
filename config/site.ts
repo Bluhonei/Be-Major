@@ -23,7 +23,11 @@ export const HERO_VIDEO: { poster: string; clips: HeroClip[] } = {
 
 export const INSTAGRAM = {
   handle: "make_it_major",
-  url: "https://instagram.com/make_it_major",
+  url: "https://www.instagram.com/make_it_major",
+};
+
+export const LINKEDIN = {
+  url: "https://www.linkedin.com/company/be-major",
 };
 
 export const CONTACT_EMAIL = "hello@be-major.com";

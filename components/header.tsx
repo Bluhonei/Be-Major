@@ -33,7 +33,7 @@ export function Header() {
     <header className={`site-header ${solid || open ? "is-solid" : ""}`}>
       <div className="flex h-full items-center justify-between px-4 md:px-8">
         <a href="#top" className="site-header__logo block w-24 md:w-32" tabIndex={solid ? 0 : -1} aria-hidden={!solid}>
-          <Logo className="h-auto w-full" sizes="128px" />
+          <Logo className="h-auto w-full" />
         </a>
         <nav aria-label="Sections" className="hidden lg:block">
           <ul className={`t-label flex gap-6 text-xs ${solid ? "" : pill}`}>

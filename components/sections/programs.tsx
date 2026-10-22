@@ -7,9 +7,9 @@ import { programs, type Program } from "@/content/site";
 
 export function Programs() {
   return (
-    <section id="programs" aria-labelledby="programs-heading" className="px-5 py-24 md:px-12 md:py-36">
+    <section id="programs" aria-labelledby="programs-heading" className="px-5 py-20 md:px-12 md:py-28">
       <SplitLines as="h2" id="programs-heading" text={programs.label} className="t-display text-[clamp(3.5rem,10vw,9rem)]" />
-      <div className="mt-16 grid gap-28 md:mt-24 md:gap-40">
+      <div className="mt-10 grid gap-28 md:mt-14 md:gap-40">
         {programs.items.map((p) => (
           <ProgramBlock key={p.slug} program={p} />
         ))}
@@ -51,6 +51,7 @@ function ProgramBlock({ program: p }: { program: Program }) {
             color={p.color === "blue" ? "periwinkle" : "blue"}
             sizes="(min-width: 768px) 22vw, 38vw"
             variant="inset"
+            mark={p.slug}
             className="aspect-square border-[6px] border-[var(--color-white)]"
           />
         </Reveal>

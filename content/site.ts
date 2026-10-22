@@ -13,24 +13,20 @@ export type FlagKind = "review" | "brae-to-write" | "brae-to-supply";
 export type Flagged = { text: string; flag: FlagKind; note?: string };
 export type Copy = string | Flagged;
 
-const flagged = (flag: FlagKind, text: string, note?: string): Flagged => ({
+export const flagged = (flag: FlagKind, text: string, note?: string): Flagged => ({
   text,
   flag,
   note,
 });
 
-const LOREM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-const LOREM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
-
 export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);
 
 export const brand = {
   name: "Be Major",
-  tagline: "Make it major.",
+  tagline: "Make it major",
   supporting: "Community. Opportunity. Impact.",
   parent: "BRAE Media LLC",
-  copyright: "© 2026 BRAE Media LLC",
+  copyright: "© 2026 Be Major. An initiative of BRAE Media LLC.",
 };
 
 export const seo = {
@@ -49,81 +45,62 @@ export const ui = {
   status: "Status",
   emailUs: "Email us",
   instagram: "Instagram",
+  linkedin: "LinkedIn",
 };
 
 export const nav = [
-  { href: "#vision", label: "Vision" },
-  { href: "#mission", label: "Mission" },
-  { href: "#pillars", label: "Pillars" },
-  { href: "#programs", label: "Programs" },
   { href: "#about", label: "About" },
-  { href: "#join", label: "Join Us" },
+  { href: "#mission", label: "Mission" },
+  { href: "#programs", label: "Programs" },
+  { href: "#join", label: "Contact" },
 ];
 
 // Fixed corner tab, bottom-right.
 export const cornerTab = {
   join: { label: "Join Us", href: "#join" },
-  partner: { label: "Partner With Us" },
 };
 
 export const hero = {
   lead: "Make it",
-  // The cycle opens and closes on "major" (the tagline). The rest are
-  // placeholders until Brae supplies the list.
-  words: [
-    flagged("brae-to-write", "lorem", "Hero word list"),
-    flagged("brae-to-write", "ipsum", "Hero word list"),
-    flagged("brae-to-write", "dolor", "Hero word list"),
-    "major",
-  ] as Copy[],
+  // The cycle opens and closes on "major" (the tagline).
+  words: ["possible", "happen", "count", "major"] as Copy[],
   accessible: "Make it major.",
   scrollCue: "Scroll",
 };
 
 export const vision = {
   label: "Vision",
-  text: "We envision spaces where individuals are empowered to seek, achieve, and flourish. By transforming opportunities into action, we aim to build pathways that foster equity, growth, and impact.",
+  text: "A future where access isn't a privilege and opportunity is the expectation, not the exception.",
 };
 
 export const mission = {
   label: "Mission",
-  text: flagged(
-    "review",
-    "Be Major is dedicated to advancing education and access equity for under-resourced programs and communities. By championing exposure and access, we create an environment where individuals can discover their potential and take bold strides toward a brighter future.",
-    "Wording may drift from the brand language rule",
-  ),
+  text: "Be Major expands access to education, culture, and opportunity through engaging programs and experiences that introduce new perspectives, build practical skills, and connect communities to resources that move them forward.",
   activateLabel: "How We Activate",
-  activate: flagged(
-    "review",
-    "Our collaborations deliver transformative programs and elevated experiences focused on art, culture, technology, and wealth literacy. By sparking curiosity and creating opportunities for enrichment, we empower individuals and organizations to transform their communities into hubs of generosity, well-being, and economic prosperity. Through innovation and leadership, we build bridges to boundless growth.",
-    "\"hubs of generosity\" leans toward giving-sector language",
-  ),
-  focusAreas: ["Art", "Culture", "Technology", "Wealth Literacy"],
+  activate:
+    "We collaborate with educators, brands, and community partners to turn ideas into experiences people can learn from and participate in. Through workshops, cultural programming, and hands-on learning, we create opportunities for connection, discovery, and practical growth.",
+  focusAreas: ["Arts & Culture", "Financial Empowerment", "Education", "Technology", "Entrepreneurship"],
 };
 
 export type PillarColor = "coral" | "teal" | "periwinkle";
 
 export const pillars = {
-  label: "Core Pillars",
+  label: "Pillars",
   items: [
     {
       name: "Access",
       color: "coral" as PillarColor,
-      text: flagged("brae-to-write", LOREM, "Access pillar"),
+      text: "We connect individuals and communities with the resources, relationships, and opportunities that open doors, remove barriers, and create pathways for meaningful advancement.",
     },
     {
-      name: "Community Immersion",
+      name: "Immersion",
       color: "teal" as PillarColor,
-      text: flagged("brae-to-write", LOREM, "Community Immersion pillar"),
+      text: "We bring people together through engaging experiences, cultural exploration, and hands-on programming that spark curiosity, broaden perspectives, and inspire new possibilities.",
     },
     {
       name: "Education",
       color: "periwinkle" as PillarColor,
-      text: flagged(
-        "review",
-        "Economic empowerment begins with knowledge. This program demystifies the wealth system, providing actionable insights and best practices for financial growth. By bridging the information gap, we equip underserved communities with the tools to build generational wealth and unlock new possibilities for success.",
-        "Repurposed from Evolve Wealth Literacy; adjust \"This program\" wording and length for a pillar",
-      ),
+      text: "We make learning accessible through practical programs that build knowledge, develop skills, and equip people to navigate opportunities with greater confidence.",
     },
   ],
 };
@@ -150,43 +127,30 @@ export const programs = {
   subOfferingsLabel: "Includes",
   items: [
     {
-      slug: "ai-anatomy",
-      name: "AI Anatomy",
-      status: "In development",
-      text: flagged(
-        "review",
-        "As technology reshapes the world, we aim to ensure black and brown students lead its evolution. The AI Anatomy program equips students with the knowledge and skills to create AI models that accurately reflect diverse cultures. By addressing and eliminating biases in artificial intelligence, we empower the next generation to redefine technological innovation and representation.",
-        "Demographic-specific line",
-      ),
-      subOfferings: [
-        {
-          name: "AI Made Simple",
-          text: flagged("brae-to-write", LOREM_SHORT, "One-line description"),
-        },
-      ],
-      media: {},
-      color: "periwinkle",
-      layout: "left",
-    },
-    {
       slug: "culture-collective",
       name: "Culture Collective",
-      status: "In development",
-      text: flagged(
-        "review",
-        "This program uncovers untapped talents in the culinary arts, exploring the intersection of creativity and business in the food and beverage industry. From mentorships to hands-on workshops, participants learn how to elevate their craft and seize entrepreneurial opportunities.",
-        "Brae is rewriting so it is not solely culinary",
-      ),
+      status: "Q2 / 2027",
+      text: "Culture Collective brings people together through immersive experiences, creative exploration, and meaningful conversations. From the arts and culinary traditions to cultural storytelling, the program celebrates diverse perspectives while creating opportunities for discovery, connection, and collaboration.",
       subOfferings: [],
       media: {},
       color: "coral",
+      layout: "left",
+    },
+    {
+      slug: "ai-anatomy",
+      name: "AI Anatomy",
+      status: "Q1 / 2027",
+      text: "AI Anatomy makes emerging technology more accessible through practical learning and hands-on exploration. Designed for curious minds at every stage, the program demystifies artificial intelligence, builds digital confidence, and equips participants with the knowledge to navigate an increasingly AI-driven world.",
+      subOfferings: [],
+      media: {},
+      color: "periwinkle",
       layout: "right",
     },
     {
       slug: "marketing-matrix",
       name: "The (Marketing) Matrix",
-      status: "In development",
-      text: "In a digital-first world, personal branding is paramount. This program teaches young professionals how to craft compelling narratives, control their stories, and leverage their talents with purpose. Participants also gain critical insights into navigating the digital landscape and avoiding online pitfalls.",
+      status: "Q1 / 2027",
+      text: "The (Marketing) Matrix explores the power of personal branding and digital storytelling. Through practical workshops and real-world insights, participants learn to shape their narratives, strengthen their professional presence, and navigate the digital landscape with confidence and intention.",
       subOfferings: [],
       media: {},
       color: "teal",
@@ -197,24 +161,23 @@ export const programs = {
 
 export const about = {
   label: "About",
-  text: flagged(
-    "brae-to-supply",
-    "Founded by Brandi Murphy, Be Major is dedicated to empowering individuals to aspire for more. We believe in the transformative power of exposure, education, and access.",
-    "Placeholder until the trimmed version arrives",
-  ),
+  paragraphs: [
+    "Founded by Brandi Murphy, Be Major is a purpose-driven organization creating meaningful opportunities through education, cultural experiences, and community engagement.",
+    "We believe exposure can change perspectives, access can change circumstances, and the right experiences can change what's possible.",
+  ] as Copy[],
 };
 
 export const join = {
   label: "Join Us",
-  headline: "Let's reimagine what's possible and build a future that inspires us all.",
+  headline: "Good things happen in good company",
   partner: {
     heading: "Partner With Us",
-    text: flagged("brae-to-write", LOREM, "Partner pitch"),
+    text: "Have an idea worth exploring? Let's connect. We collaborate with brands, organizations, and community leaders to bring thoughtful programs and experiences to life.",
     cta: "Email hello@be-major.com",
   },
   signup: {
     heading: "Don't Miss Major Moments",
-    text: flagged("brae-to-write", LOREM_SHORT, "Signup intro"),
+    text: "Be among the first to hear about upcoming programs, events, and opportunities to get involved. Let us know what interests you.",
     fields: {
       firstName: "First name",
       lastName: "Last name",
@@ -223,7 +186,7 @@ export const join = {
       optIn: "Yes, send me Be Major updates. I can unsubscribe anytime.",
       honeypot: "Leave this field empty",
     },
-    submit: "Sign up",
+    submit: "Keep Me Posted",
     sending: "Sending…",
     success: "You're in. Watch your inbox for what's next.",
     errors: {
@@ -235,19 +198,8 @@ export const join = {
   },
 };
 
+// Be Major uses BRAE Media's policies on the Bluhoneí site.
 export const footer = {
-  privacy: { label: "Privacy", href: "/privacy" },
-  terms: { label: "Terms", href: "/terms" },
-};
-
-export const legal = {
-  privacy: {
-    title: "Privacy",
-    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Privacy policy copy"),
-  },
-  terms: {
-    title: "Terms",
-    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Terms copy"),
-  },
-  back: "Back to Be Major",
+  privacy: { label: "Privacy", href: "https://bluhonei.com/privacy-policy" },
+  terms: { label: "Terms", href: "https://bluhonei.com/terms-of-service" },
 };

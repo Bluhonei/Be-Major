@@ -42,7 +42,7 @@ export function Hero() {
   const word = hero.words[shown];
   const field = fieldFor(shown);
   const prevField = fieldFor((shown - 1 + N) % N);
-  const ink = video ? "text-[var(--color-white)]" : "text-[var(--color-ink)]";
+  const ink = video ? "text-[var(--color-white)]" : "text-[var(--color-black)]";
 
   return (
     <section
@@ -50,8 +50,8 @@ export function Hero() {
       ref={ref}
       aria-label={hero.accessible}
       data-paused={!active || paused || undefined}
-      className="grain relative isolate flex min-h-[600px] flex-col justify-between overflow-hidden"
-      style={{ height: "100svh", background: video ? "var(--color-ink)" : `var(--color-${prevField})` }}
+      className="grain relative isolate flex min-h-[max(600px,100svh)] flex-col justify-between gap-10 overflow-hidden"
+      style={{ background: video ? "var(--color-ink)" : `var(--color-${prevField})` }}
     >
       {video ? (
         <HeroVideo playing={active && !paused} />
@@ -71,12 +71,15 @@ export function Hero() {
       )}
 
       <div className="px-5 pt-[calc(var(--header-h)+var(--frame)+8px)] md:px-12">
-        <LogoIntro tone={video ? "white" : "dark"} className="w-[min(80vw,560px)]" />
+        <LogoIntro className={`w-[min(68vw,460px)] ${ink}`} />
       </div>
 
       <div className="px-5 pb-[calc(var(--frame)+72px)] md:px-12 md:pb-[calc(var(--frame)+48px)]">
         <h1 className="sr-only">{hero.accessible}</h1>
-        <p aria-hidden className={`t-display text-[clamp(4rem,19vw,15rem)] ${ink}`}>
+        {/* Size follows the shorter of width and height so the logo always has
+            room above; the negative indent cancels Anton's left side bearing
+            so the letters line up with the logo's left edge. */}
+        <p aria-hidden className={`t-display -ml-[0.035em] text-[clamp(4rem,min(19vw,24svh),15rem)] ${ink}`}>
           <span className="block">{hero.lead}</span>
           <span className="block overflow-hidden pb-[0.04em]">
             <span key={`word-${shown}`} className={`block ${started ? "word-rise" : ""}`}>
