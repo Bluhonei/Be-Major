@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-jost), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Type pairings for /type. Each specimen sets --d-* (display), --l-*
+ * (label) and --b-* (body) on its root; the shared markup reads them.
+ */
+.pairing-a {
+  --d-family: var(--font-anton);
+  --d-weight: 400;
+  --d-stretch: normal;
+  --d-tracking: 0.005em;
+  --d-leading: 0.9;
+  --d-opsz: normal;
+  --l-family: var(--font-jost);
+  --l-weight: 500;
+  --l-tracking: 0.22em;
+  --b-family: var(--font-jost);
+  --b-weight: 400;
+}
+.pairing-a2 {
+  --d-family: var(--font-big-shoulders);
+  --d-weight: 900;
+  --d-stretch: normal;
+  --d-tracking: 0;
+  --d-leading: 0.86;
+  --d-opsz: "opsz" 72;
+  --l-family: var(--font-jost);
+  --l-weight: 500;
+  --l-tracking: 0.22em;
+  --b-family: var(--font-jost);
+  --b-weight: 400;
+}
+.pairing-b {
+  --d-family: var(--font-jost);
+  --d-weight: 800;
+  --d-stretch: normal;
+  --d-tracking: -0.01em;
+  --d-leading: 0.92;
+  --d-opsz: normal;
+  --l-family: var(--font-jost);
+  --l-weight: 300;
+  --l-tracking: 0.34em;
+  --b-family: var(--font-jost);
+  --b-weight: 400;
+}
+.pairing-c {
+  --d-family: var(--font-archivo);
+  --d-weight: 900;
+  --d-stretch: 62%;
+  --d-tracking: 0;
+  --d-leading: 0.86;
+  --d-opsz: normal;
+  --l-family: var(--font-manrope);
+  --l-weight: 600;
+  --l-tracking: 0.18em;
+  --b-family: var(--font-manrope);
+  --b-weight: 400;
+}
+
+.t-display {
+  font-family: var(--d-family), sans-serif;
+  font-weight: var(--d-weight);
+  font-stretch: var(--d-stretch);
+  font-variation-settings: var(--d-opsz);
+  letter-spacing: var(--d-tracking);
+  line-height: var(--d-leading);
+  text-transform: uppercase;
+}
+.t-label {
+  font-family: var(--l-family), sans-serif;
+  font-weight: var(--l-weight);
+  letter-spacing: var(--l-tracking);
+  text-transform: uppercase;
+}
+.t-body {
+  font-family: var(--b-family), sans-serif;
+  font-weight: var(--b-weight);
+}
+
+/* Hero color-field wipe. The incoming field is clipped from the right
+   edge and opens leftward; the word under it slides up. */
+.field-wipe {
+  animation: field-wipe 700ms cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+@keyframes field-wipe {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+.word-rise {
+  animation: word-rise 650ms cubic-bezier(0.2, 0.7, 0.1, 1) 150ms both;
+}
+@keyframes word-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

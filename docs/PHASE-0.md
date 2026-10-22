@@ -121,7 +121,7 @@ Rules that keep everything AA:
 ## 4. Flodesk plan
 
 Findings from the connected Flodesk account (read-only check, nothing changed):
-- The account is Brandi Murphy (bm@bluhonei.com). Brand settings are **Bluhoneí** (Bluhoneí logo, colors and Jersey City mailing address). In Flodesk these are account-wide, so Be Major emails would default to Bluhoneí branding in the footer/header unless each email is overridden.
+- The connected account's brand settings are **Bluhoneí** (Bluhoneí logo, colors and Jersey City mailing address). In Flodesk these are account-wide, so Be Major emails would default to Bluhoneí branding in the footer/header unless each email is overridden.
 - Existing segments: Main Subscriber, Money Matters, Tool Results, Unengaged. There is **no Be Major segment yet**.
 - **Second sending domain: not confirmed.** The Flodesk API/connector doesn't expose domain settings. Brae, please check Flodesk → Account settings → Domains, or ask Flodesk support whether the plan allows authenticating **be-major.com** alongside bluhonei.com.
 - **Unsubscribes:** as far as I know, Flodesk unsubscribes are account-level, not per segment. If so, someone who unsubscribes from a Be Major email is also unsubscribed from Bluhoneí, and the reverse. Please confirm with Flodesk.
@@ -193,3 +193,14 @@ In Flodesk: store the selection in a custom field (e.g. `be_major_interests`) **
 
 ## Next step after go-ahead
 Font comparison page (A: Anton/Big Shoulders + Jost · B: Jost only · C: Archivo condensed black + Manrope). Each pairing shows the hero line, a section headline, body text and the form, judged against the logo. Note: the logo's "MAJOR" is a light, widely tracked classical sans, so option B's light tracked labels will sit closest to it.
+
+---
+
+## Update — Oct 22 (go-ahead received)
+- Stack confirmed from `Bluhonei/web`: Next.js 16.3 (App Router), React 19.2, Tailwind v4, TypeScript, ESLint 9, fonts via `next/font/google` from a single `lib/fonts.ts`. Be Major mirrors the stack, not the components.
+- Instagram: `instagram.com/make_it_major` (in `config/site.ts`).
+- Missing copy uses lorem ipsum, flagged [BRAE TO WRITE] on previews.
+- Email: Google Workspace confirmed, so add be-major.com as a secondary/alias domain and create hello@.
+- Domain registered at Squarespace, so DNS edits happen in Squarespace Domains.
+- Logo: AI/EPS originals include the "FOUNDATION" line. Removing that line from the vector file is a deletion, not tracing, so it's the preferred route to a clean SVG.
+- Note: this GitHub repo is **public**. No keys, subscriber data or account details go in it.

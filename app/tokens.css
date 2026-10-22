@@ -1,0 +1,26 @@
+/*
+ * Be Major design tokens — the only place colors are defined.
+ * Contrast ratios (WCAG 2.x) are in docs/PHASE-0.md §3.
+ *
+ * Rules:
+ * - coral / teal / periwinkle are color FIELDS only; text on them is ink.
+ * - blue (#4A80CF) carries large display text only (3.98:1 on white);
+ *   small text and links in blue use blue-deep.
+ * - the -deep shades are for headings and labels on white or grey.
+ */
+@theme {
+  --color-blue: #4a80cf;
+  --color-blue-deep: #2f64b3;
+  --color-coral: #ff7a66;
+  --color-coral-deep: #b8402f;
+  --color-teal: #2bb8a8;
+  --color-teal-deep: #0d7468;
+  --color-periwinkle: #9a9cf2;
+  --color-periwinkle-deep: #5450c4;
+  --color-ink: #16181d;
+  --color-grey: #f3f3f1;
+  --color-white: #ffffff;
+
+  /* Preview-only copy flags. Not a brand color. */
+  --color-flag: #ffd400;
+}
