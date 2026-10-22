@@ -1,10 +1,12 @@
 // All site copy lives here. Components never hardcode copy.
 //
 // Copy that still needs Brae is wrapped in `flagged()`. Flagged copy
-// renders with a visible badge on previews; production builds must not
-// ship with any left (enforced once the landing page is built).
+// renders with a visible badge until launch (config/site.ts SHOW_FLAGS),
+// and scripts/check-content.mjs fails a launched build that still has any.
 //
-// Placeholder text is lorem ipsum by instruction — never invented copy.
+// Placeholder text is lorem ipsum by instruction, never invented copy.
+// Brand language rule (also enforced by scripts/check-content.mjs): no
+// copy may say or imply a tax-exempt organization (see scripts/check-content.mjs).
 
 export type FlagKind = "review" | "brae-to-write" | "brae-to-supply";
 
@@ -21,24 +23,61 @@ const LOREM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 const LOREM =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
+export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);
+
 export const brand = {
   name: "Be Major",
   tagline: "Make it major.",
   supporting: "Community. Opportunity. Impact.",
-  email: "hello@be-major.com",
+  parent: "BRAE Media LLC",
   copyright: "© 2026 BRAE Media LLC",
+};
+
+export const seo = {
+  title: "Be Major — Make it major.",
+  description:
+    "Be Major is the community arm of BRAE Media. Community. Opportunity. Impact.",
+  ogAlt: "Be Major — Make it major.",
+};
+
+export const ui = {
+  skipToContent: "Skip to content",
+  menu: "Menu",
+  closeMenu: "Close menu",
+  pause: "Pause",
+  play: "Play",
+  status: "Status",
+  emailUs: "Email us",
+  instagram: "Instagram",
+};
+
+export const nav = [
+  { href: "#vision", label: "Vision" },
+  { href: "#mission", label: "Mission" },
+  { href: "#pillars", label: "Pillars" },
+  { href: "#programs", label: "Programs" },
+  { href: "#about", label: "About" },
+  { href: "#join", label: "Join Us" },
+];
+
+// Fixed corner tab, bottom-right.
+export const cornerTab = {
+  join: { label: "Join Us", href: "#join" },
+  partner: { label: "Partner With Us" },
 };
 
 export const hero = {
   lead: "Make it",
-  // Final word of the cycle is always "major" (the tagline). The rest
-  // are placeholders until Brae supplies the list.
+  // The cycle opens and closes on "major" (the tagline). The rest are
+  // placeholders until Brae supplies the list.
   words: [
     flagged("brae-to-write", "lorem", "Hero word list"),
     flagged("brae-to-write", "ipsum", "Hero word list"),
     flagged("brae-to-write", "dolor", "Hero word list"),
     "major",
   ] as Copy[],
+  accessible: "Make it major.",
+  scrollCue: "Scroll",
 };
 
 export const vision = {
@@ -51,33 +90,35 @@ export const mission = {
   text: flagged(
     "review",
     "Be Major is dedicated to advancing education and access equity for under-resourced programs and communities. By championing exposure and access, we create an environment where individuals can discover their potential and take bold strides toward a brighter future.",
-    "Phrasing reads close to a nonprofit mission statement",
+    "Wording may drift from the brand language rule",
   ),
   activateLabel: "How We Activate",
   activate: flagged(
     "review",
     "Our collaborations deliver transformative programs and elevated experiences focused on art, culture, technology, and wealth literacy. By sparking curiosity and creating opportunities for enrichment, we empower individuals and organizations to transform their communities into hubs of generosity, well-being, and economic prosperity. Through innovation and leadership, we build bridges to boundless growth.",
-    "\"hubs of generosity\" leans philanthropic",
+    "\"hubs of generosity\" leans toward giving-sector language",
   ),
   focusAreas: ["Art", "Culture", "Technology", "Wealth Literacy"],
 };
+
+export type PillarColor = "coral" | "teal" | "periwinkle";
 
 export const pillars = {
   label: "Core Pillars",
   items: [
     {
       name: "Access",
-      color: "coral",
+      color: "coral" as PillarColor,
       text: flagged("brae-to-write", LOREM, "Access pillar"),
     },
     {
       name: "Community Immersion",
-      color: "teal",
+      color: "teal" as PillarColor,
       text: flagged("brae-to-write", LOREM, "Community Immersion pillar"),
     },
     {
       name: "Education",
-      color: "periwinkle",
+      color: "periwinkle" as PillarColor,
       text: flagged(
         "review",
         "Economic empowerment begins with knowledge. This program demystifies the wealth system, providing actionable insights and best practices for financial growth. By bridging the information gap, we equip underserved communities with the tools to build generational wealth and unlock new possibilities for success.",
@@ -87,17 +128,26 @@ export const pillars = {
   ],
 };
 
+export type Media =
+  | { kind: "image"; src: string; alt: string }
+  | { kind: "video"; mp4: string; webm?: string; poster: string };
+
 export type Program = {
   slug: string;
   name: string;
   status: string;
   text: Copy;
   subOfferings: { name: string; text: Copy }[];
+  // Stock media from Brae. Empty → color fields with shapes.
+  media: { main?: Media; inset?: Media };
+  color: PillarColor | "blue";
+  layout: "left" | "right" | "center";
 };
 
 export const programs = {
   label: "Programs",
   cta: "Get updates",
+  subOfferingsLabel: "Includes",
   items: [
     {
       slug: "ai-anatomy",
@@ -114,6 +164,9 @@ export const programs = {
           text: flagged("brae-to-write", LOREM_SHORT, "One-line description"),
         },
       ],
+      media: {},
+      color: "periwinkle",
+      layout: "left",
     },
     {
       slug: "culture-collective",
@@ -125,6 +178,9 @@ export const programs = {
         "Brae is rewriting so it is not solely culinary",
       ),
       subOfferings: [],
+      media: {},
+      color: "coral",
+      layout: "right",
     },
     {
       slug: "marketing-matrix",
@@ -132,6 +188,9 @@ export const programs = {
       status: "In development",
       text: "In a digital-first world, personal branding is paramount. This program teaches young professionals how to craft compelling narratives, control their stories, and leverage their talents with purpose. Participants also gain critical insights into navigating the digital landscape and avoiding online pitfalls.",
       subOfferings: [],
+      media: {},
+      color: "teal",
+      layout: "center",
     },
   ] as Program[],
 };
@@ -151,7 +210,7 @@ export const join = {
   partner: {
     heading: "Partner With Us",
     text: flagged("brae-to-write", LOREM, "Partner pitch"),
-    cta: "Email us",
+    cta: "Email hello@be-major.com",
   },
   signup: {
     heading: "Don't Miss Major Moments",
@@ -160,44 +219,35 @@ export const join = {
       firstName: "First name",
       lastName: "Last name",
       email: "Email",
-      interests: "I'm interested in",
-      optIn: "Yes, send me Be Major updates. Unsubscribe anytime.",
+      interests: "I'm interested in (optional)",
+      optIn: "Yes, send me Be Major updates. I can unsubscribe anytime.",
+      honeypot: "Leave this field empty",
     },
     submit: "Sign up",
+    sending: "Sending…",
     success: "You're in. Watch your inbox for what's next.",
-    error: "Something went wrong. Please try again.",
+    errors: {
+      generic: "Something went wrong. Please try again in a moment.",
+      invalid: "Please add your first name, last name and a valid email, and tick the opt-in box.",
+      rateLimited: "Too many tries. Please wait a minute and try again.",
+      notConfigured: "Signups aren't switched on yet. Please check back soon.",
+    },
   },
 };
 
 export const footer = {
-  privacy: "Privacy",
-  terms: "Terms",
+  privacy: { label: "Privacy", href: "/privacy" },
+  terms: { label: "Terms", href: "/terms" },
 };
 
-// Copy used only on the /type comparison page.
-export const typePage = {
-  title: "Type comparison",
-  intro:
-    "Three pairings (A has two display options), each shown with the logo, the hero line, a section headline, body text and the signup form. Same layout and colors in each; only the type changes.",
-  previewNote: "Preview only. The form does not submit.",
-  pairings: {
-    a: {
-      name: "A — Anton + Jost",
-      note: "Heavy condensed display, Jost body and labels.",
-    },
-    a2: {
-      name: "A′ — Big Shoulders Display + Jost",
-      note: "Option A's alternative display face (Big Shoulders, display optical size).",
-    },
-    b: {
-      name: "B — Jost throughout",
-      note: "Heavy Jost headlines, light widely tracked uppercase labels. Closest in spirit to the logo's spaced MAJOR.",
-    },
-    c: {
-      name: "C — Archivo Condensed Black + Manrope",
-      note: "Archivo at its narrowest width and heaviest weight, Manrope body.",
-    },
+export const legal = {
+  privacy: {
+    title: "Privacy",
+    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Privacy policy copy"),
   },
+  terms: {
+    title: "Terms",
+    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Terms copy"),
+  },
+  back: "Back to Be Major",
 };
-
-export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);

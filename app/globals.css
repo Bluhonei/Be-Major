@@ -1,8 +1,24 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+/* ---------------------------------------------------------------- base */
+
+:root {
+  --frame: 6px;
+  --header-h: 64px;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ease-wipe: cubic-bezier(0.77, 0, 0.18, 1);
+}
+@media (min-width: 768px) {
+  :root {
+    --frame: 14px;
+    --header-h: 80px;
+  }
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + var(--frame));
 }
 
 body {
@@ -10,102 +26,152 @@ body {
   color: var(--color-ink);
   font-family: var(--font-jost), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+:focus-visible {
+  outline: 3px solid var(--color-blue-deep);
+  outline-offset: 3px;
 }
 
-/*
- * Type pairings for /type. Each specimen sets --d-* (display), --l-*
- * (label) and --b-* (body) on its root; the shared markup reads them.
- */
-.pairing-a {
-  --d-family: var(--font-anton);
-  --d-weight: 400;
-  --d-stretch: normal;
-  --d-tracking: 0.005em;
-  --d-leading: 0.9;
-  --d-opsz: normal;
-  --l-family: var(--font-jost);
-  --l-weight: 500;
-  --l-tracking: 0.22em;
-  --b-family: var(--font-jost);
-  --b-weight: 400;
-}
-.pairing-a2 {
-  --d-family: var(--font-big-shoulders);
-  --d-weight: 900;
-  --d-stretch: normal;
-  --d-tracking: 0;
-  --d-leading: 0.86;
-  --d-opsz: "opsz" 72;
-  --l-family: var(--font-jost);
-  --l-weight: 500;
-  --l-tracking: 0.22em;
-  --b-family: var(--font-jost);
-  --b-weight: 400;
-}
-.pairing-b {
-  --d-family: var(--font-jost);
-  --d-weight: 800;
-  --d-stretch: normal;
-  --d-tracking: -0.01em;
-  --d-leading: 0.92;
-  --d-opsz: normal;
-  --l-family: var(--font-jost);
-  --l-weight: 300;
-  --l-tracking: 0.34em;
-  --b-family: var(--font-jost);
-  --b-weight: 400;
-}
-.pairing-c {
-  --d-family: var(--font-archivo);
-  --d-weight: 900;
-  --d-stretch: 62%;
-  --d-tracking: 0;
-  --d-leading: 0.86;
-  --d-opsz: normal;
-  --l-family: var(--font-manrope);
-  --l-weight: 600;
-  --l-tracking: 0.18em;
-  --b-family: var(--font-manrope);
-  --b-weight: 400;
-}
+/* --------------------------------------------------------------- type */
 
 .t-display {
-  font-family: var(--d-family), sans-serif;
-  font-weight: var(--d-weight);
-  font-stretch: var(--d-stretch);
-  font-variation-settings: var(--d-opsz);
-  letter-spacing: var(--d-tracking);
-  line-height: var(--d-leading);
+  font-family: var(--font-anton), "Arial Narrow", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 .t-label {
-  font-family: var(--l-family), sans-serif;
-  font-weight: var(--l-weight);
-  letter-spacing: var(--l-tracking);
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
-.t-body {
-  font-family: var(--b-family), sans-serif;
-  font-weight: var(--b-weight);
+
+/* -------------------------------------------------------------- frame */
+
+.frame {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  border: var(--frame) solid var(--color-white);
 }
 
-/* Hero color-field wipe. The incoming field is clipped from the right
-   edge and opens leftward; the word under it slides up. */
+/* Diagonal corner tab: a white triangle in the bottom-right corner with
+   the CTAs rotated along its hypotenuse. */
+.corner-tab {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 41;
+  width: calc(150px + env(safe-area-inset-right));
+  height: calc(150px + env(safe-area-inset-bottom));
+  background: var(--color-white);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+/* The links sit on a line parallel to the hypotenuse, centred at 30% in
+   from the corner on both axes (inside the triangle), rotated to match. */
+.corner-tab__links {
+  position: absolute;
+  right: 30%;
+  bottom: 30%;
+  transform: translate(50%, 50%) rotate(-45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.corner-tab__partner {
+  display: none;
+}
+@media (min-width: 768px) {
+  .corner-tab {
+    width: 230px;
+    height: 230px;
+  }
+  .corner-tab__partner {
+    display: inline;
+  }
+}
+
+/* ------------------------------------------------------------- header */
+
+.site-header {
+  position: fixed;
+  top: var(--frame);
+  left: var(--frame);
+  right: var(--frame);
+  z-index: 39;
+  height: var(--header-h);
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease;
+}
+.site-header.is-solid {
+  background: var(--color-white);
+  box-shadow: 0 1px 0 rgb(22 24 29 / 0.08);
+}
+/* The header logo stays hidden over the hero (the hero carries the big
+   logo) and arrives small once the header turns solid. */
+.site-header__logo {
+  opacity: 0;
+  transform: scale(1.35);
+  transform-origin: left center;
+  transition:
+    opacity 300ms ease,
+    transform 400ms var(--ease-out);
+}
+.site-header.is-solid .site-header__logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------- logo intro */
+
+/* Raster stand-in for the SVG draw-in: the script line ("be" + swash) is
+   wiped in left to right, then MAJOR fades up. Swapped for an SVG mask
+   on the swash path once vector files arrive. */
+.logo-intro {
+  position: relative;
+  display: block;
+}
+.logo-intro__script {
+  clip-path: inset(0 0 41% 0);
+  animation: logo-script 1500ms var(--ease-wipe) 200ms both;
+}
+.logo-intro__major {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(59% 0 0 0);
+  animation: logo-major 900ms var(--ease-out) 1400ms both;
+}
+@keyframes logo-script {
+  from {
+    clip-path: inset(0 100% 41% 0);
+  }
+  to {
+    clip-path: inset(0 0 41% 0);
+  }
+}
+@keyframes logo-major {
+  from {
+    opacity: 0;
+    transform: translateY(8%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------- hero */
+
 .field-wipe {
-  animation: field-wipe 700ms cubic-bezier(0.77, 0, 0.18, 1) both;
+  animation: field-wipe 700ms var(--ease-wipe) both;
 }
 @keyframes field-wipe {
   from {
@@ -116,7 +182,7 @@ body {
   }
 }
 .word-rise {
-  animation: word-rise 650ms cubic-bezier(0.2, 0.7, 0.1, 1) 150ms both;
+  animation: word-rise 650ms var(--ease-out) 150ms both;
 }
 @keyframes word-rise {
   from {
@@ -124,5 +190,172 @@ body {
   }
   to {
     transform: translateY(0);
+  }
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(4) infinite;
+}
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-3%, 2%);
+  }
+  50% {
+    transform: translate(2%, -3%);
+  }
+  75% {
+    transform: translate(-2%, -1%);
+  }
+}
+
+.shape {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(2px);
+  mix-blend-mode: soft-light;
+  will-change: transform;
+}
+.shape--a {
+  animation: drift-a 22s ease-in-out infinite alternate;
+}
+.shape--b {
+  animation: drift-b 28s ease-in-out infinite alternate;
+}
+@keyframes drift-a {
+  to {
+    transform: translate(-12vw, 8vh) rotate(25deg) scale(1.1);
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate(10vw, -10vh) rotate(-30deg) scale(0.9);
+  }
+}
+
+/* Pause decorative loops when their section is off-screen or paused. */
+[data-paused="true"] .shape,
+[data-paused="true"].grain::after,
+[data-paused="true"] .grain::after,
+[data-paused="true"] .marquee__track {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------ reveals */
+
+/* Reveals only apply once JS has marked <html class="js">, so content is
+   always visible without JS. useReveal() sets data-inview once. */
+
+.js .reveal-lines .line > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 900ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js .reveal-lines[data-inview] .line > span {
+  transform: none;
+}
+.reveal-lines .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.js .reveal-open {
+  clip-path: inset(6% 4% round 24px);
+  transform: scale(0.96);
+  transition:
+    clip-path 1100ms var(--ease-wipe),
+    transform 1100ms var(--ease-wipe);
+  transition-delay: var(--delay, 0ms);
+}
+.js .reveal-open[data-inview] {
+  clip-path: inset(0 round 0);
+  transform: none;
+}
+
+.js .reveal-wipe {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1000ms var(--ease-wipe);
+  transition-delay: var(--delay, 0ms);
+}
+.js .reveal-wipe--left {
+  clip-path: inset(0 0 0 100%);
+}
+.js .reveal-wipe--up {
+  clip-path: inset(100% 0 0 0);
+}
+.js [data-inview] > .reveal-wipe {
+  clip-path: inset(0);
+}
+
+.js .reveal-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 800ms ease,
+    transform 800ms var(--ease-out);
+  transition-delay: var(--delay, 0ms);
+}
+.js .reveal-fade[data-inview] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------ marquee */
+
+.marquee {
+  overflow: hidden;
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ----------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal-lines .line > span,
+  .js .reveal-open,
+  .js .reveal-wipe,
+  .js .reveal-fade {
+    clip-path: none;
+    transform: none;
+    opacity: 1;
+  }
+  .marquee__track {
+    width: auto;
+    flex-wrap: wrap;
+  }
+  .marquee__dupe {
+    display: none;
   }
 }

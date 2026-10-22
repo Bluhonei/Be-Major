@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { LAUNCHED, SITE_URL } from "@/config/site";
 
-// Nothing is indexable until launch; the real rules ship with the
-// landing page and DNS cutover.
+// Blocks everything until launch (config/site.ts LAUNCHED).
 export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: "*", disallow: "/" } };
+  if (!LAUNCHED) return { rules: { userAgent: "*", disallow: "/" } };
+  return { rules: { userAgent: "*", allow: "/" }, sitemap: `${SITE_URL}/sitemap.xml` };
 }

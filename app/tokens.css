@@ -7,8 +7,10 @@
  * - blue (#4A80CF) carries large display text only (3.98:1 on white);
  *   small text and links in blue use blue-deep.
  * - the -deep shades are for headings and labels on white or grey.
+ * `static` keeps every variable in the CSS even when no utility class uses
+ * it; components also reference these through inline styles.
  */
-@theme {
+@theme static {
   --color-blue: #4a80cf;
   --color-blue-deep: #2f64b3;
   --color-coral: #ff7a66;
