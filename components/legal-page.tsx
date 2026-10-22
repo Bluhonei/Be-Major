@@ -47,6 +47,15 @@ export function LegalPage({ page }: { page: LegalPageContent }) {
                 {s.after?.map((p, i) => (
                   <p key={`after-${i}`}>{p}</p>
                 ))}
+                {s.address && (
+                  <address className="not-italic">
+                    {s.address.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </address>
+                )}
               </div>
             </section>
           ))}

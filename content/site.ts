@@ -213,8 +213,14 @@ export const footer = {
 // Legal pages. Drafted from what the site actually does (signup form to
 // Flodesk, Vercel hosting, no analytics, no cookies). The `draft` flag
 // keeps the DRAFT banner up and blocks launch until Brae's review is done.
-// Rendered in order: paragraphs, then list, then after.
-export type LegalSection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
+// Rendered in order: paragraphs, then list, then after, then address.
+export type LegalSection = {
+  heading: string;
+  paragraphs?: string[];
+  list?: string[];
+  after?: string[];
+  address?: string[];
+};
 export type LegalPage = {
   title: string;
   description: string;
@@ -226,6 +232,7 @@ export type LegalPage = {
 
 const OPERATOR = "Be Major, an initiative of BRAE Media LLC";
 const LEGAL_UPDATED = "October 22, 2026";
+const LEGAL_CONTACT = [OPERATOR, "101 Hudson St, 21st Fl, Jersey City, NJ 07302", "hello@be-major.com"];
 
 export const privacy: LegalPage = {
   title: "Privacy Policy",
@@ -271,6 +278,9 @@ export const privacy: LegalPage = {
         "Flodesk, our email provider, which stores your signup details and sends our emails.",
         "Vercel, which hosts the Site.",
       ],
+      after: [
+        "Be Major shares a Flodesk account with other BRAE Media LLC brands. Your information is kept in a separate Be Major list, but unsubscribing from Be Major emails may also unsubscribe you from other BRAE Media emails sent from that account.",
+      ],
     },
     {
       heading: "Your choices",
@@ -306,7 +316,7 @@ export const privacy: LegalPage = {
     },
     {
       heading: "Contact",
-      paragraphs: [`${OPERATOR}. Email hello@be-major.com.`],
+      address: LEGAL_CONTACT,
     },
   ],
 };
@@ -363,6 +373,12 @@ export const terms: LegalPage = {
       ],
     },
     {
+      heading: "Governing law",
+      paragraphs: [
+        "These terms are governed by the laws of the State of New Jersey, without regard to its conflict-of-law rules.",
+      ],
+    },
+    {
       heading: "Changes to these terms",
       paragraphs: [
         "We may update these terms from time to time. We'll post the updated version here and change the date at the top. Continuing to use the Site after an update means you accept the revised terms.",
@@ -370,7 +386,7 @@ export const terms: LegalPage = {
     },
     {
       heading: "Contact",
-      paragraphs: [`${OPERATOR}. Email hello@be-major.com.`],
+      address: LEGAL_CONTACT,
     },
   ],
 };
