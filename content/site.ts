@@ -23,17 +23,17 @@ export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);
 
 export const brand = {
   name: "Be Major",
-  tagline: "Make it major",
+  tagline: "Make it Major",
   supporting: "Community. Opportunity. Impact.",
   parent: "BRAE Media LLC",
   copyright: "© 2026 Be Major. An initiative of BRAE Media LLC.",
 };
 
 export const seo = {
-  title: "Be Major — Make it major.",
+  title: "Be Major — Make it Major",
   description:
     "Be Major is the community arm of BRAE Media. Community. Opportunity. Impact.",
-  ogAlt: "Be Major — Make it major.",
+  ogAlt: "Be Major — Make it Major",
 };
 
 export const ui = {
@@ -64,7 +64,7 @@ export const hero = {
   lead: "Make it",
   // The cycle opens and closes on "major" (the tagline).
   words: ["possible", "happen", "count", "major"] as Copy[],
-  accessible: "Make it major.",
+  accessible: "Make it Major",
   scrollCue: "Scroll",
 };
 
@@ -186,6 +186,13 @@ export const join = {
       optIn: "Yes, send me Be Major updates. I can unsubscribe anytime.",
       honeypot: "Leave this field empty",
     },
+    // Interest checkboxes. Each id maps to an optional Flodesk segment env
+    // var, e.g. FLODESK_SEGMENT_COMMUNITY_OPPORTUNITIES.
+    interestOptions: [
+      { id: "programs", label: "Programs" },
+      { id: "events", label: "Events" },
+      { id: "community-opportunities", label: "Community Opportunities" },
+    ],
     submit: "Keep Me Posted",
     sending: "Sending…",
     success: "You're in. Watch your inbox for what's next.",
