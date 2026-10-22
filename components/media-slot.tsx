@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ProgramMark } from "@/components/program-marks";
 import type { Media } from "@/content/site";
 
 // Stock photo/video from Brae when supplied; otherwise a color field with
@@ -9,12 +10,15 @@ export function MediaSlot({
   color,
   sizes,
   variant = "main",
+  mark,
   className = "",
 }: {
   media?: Media;
   color: string;
   sizes: string;
   variant?: "main" | "inset";
+  // Program slug whose abstract mark fills an empty inset tile.
+  mark?: string;
   className?: string;
 }) {
   if (media?.kind === "image") {
@@ -53,7 +57,11 @@ export function MediaSlot({
           <span className="absolute bottom-[12%] left-[10%] h-[18%] w-[60%] -rotate-12 rounded-full bg-[var(--color-ink)] opacity-15" />
         </>
       ) : (
-        <span className="absolute inset-[22%] rotate-45 bg-[var(--color-white)] opacity-40" />
+        mark ? (
+          <ProgramMark slug={mark} className="absolute inset-[12%]" />
+        ) : (
+          <span className="absolute inset-[22%] rotate-45 bg-[var(--color-white)] opacity-40" />
+        )
       )}
     </div>
   );

@@ -51,6 +51,7 @@ function ProgramBlock({ program: p }: { program: Program }) {
             color={p.color === "blue" ? "periwinkle" : "blue"}
             sizes="(min-width: 768px) 22vw, 38vw"
             variant="inset"
+            mark={p.slug}
             className="aspect-square border-[6px] border-[var(--color-white)]"
           />
         </Reveal>
