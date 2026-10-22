@@ -3,7 +3,7 @@ export const SITE_URL = "https://be-major.com";
 // Flip to true only at DNS cutover. While false: flagged copy shows its
 // badge on every deploy, robots blocks crawling, and nothing is indexed.
 // Once true, a build with flagged copy left in content/ fails.
-export const LAUNCHED = false;
+export const LAUNCHED = true;
 
 // "colors" ships first. "video" needs Brae's licensed clips listed in
 // HERO_VIDEO below; with none listed it falls back to "colors".
