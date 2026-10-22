@@ -9,10 +9,12 @@ export function About() {
         <h2 id="about-label" className="t-label text-xs text-[var(--color-periwinkle-deep)] md:col-span-3">
           {about.label}
         </h2>
-        <Reveal className="md:col-span-8 md:col-start-5">
-          <p className="text-2xl leading-snug font-light md:text-4xl md:leading-tight">
-            <Copy value={about.text} />
-          </p>
+        <Reveal className="grid gap-6 md:col-span-8 md:col-start-5 md:gap-8">
+          {about.paragraphs.map((p, i) => (
+            <p key={i} className="text-2xl leading-snug font-light md:text-4xl md:leading-tight">
+              <Copy value={p} />
+            </p>
+          ))}
         </Reveal>
       </div>
     </section>
