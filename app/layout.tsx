@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { LAUNCHED, SITE_URL } from "@/config/site";
+import { INDEXABLE, SITE_URL } from "@/config/site";
 import { brand, seo } from "@/content/site";
 import { fontVariables } from "@/lib/fonts";
 import "./globals.css";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     images: [{ url: "/og.png", width: 1200, height: 630, alt: seo.ogAlt }],
   },
   twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: ["/og.png"] },
-  robots: LAUNCHED ? undefined : { index: false, follow: false },
+  robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = { themeColor: "#4a80cf" };

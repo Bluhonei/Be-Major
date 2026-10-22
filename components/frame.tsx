@@ -8,7 +8,7 @@ export function Frame() {
       <div aria-hidden className="frame" />
       <nav aria-label="Quick actions" className="corner-tab">
         <div className="corner-tab__links t-label text-[11px] md:text-xs">
-          <a href={cornerTab.join.href} className="hover:text-[var(--color-blue-deep)]">
+          <a href={cornerTab.join.href} className="hit hover:text-[var(--color-blue-deep)]">
             {cornerTab.join.label}
           </a>
         </div>

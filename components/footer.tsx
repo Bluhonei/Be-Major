@@ -10,10 +10,10 @@ export function Footer() {
       <p className="t-display mt-4 text-6xl opacity-15 md:mt-5 md:text-9xl">{brand.tagline}</p>
       <SocialIcons className="mt-8 -ml-1" />
       <div className="t-label mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-[var(--color-white)]/20 pt-6 text-[11px]">
-        <a href={footer.privacy.href} className="hover:underline">
+        <a href={footer.privacy.href} className="hit hover:underline">
           {footer.privacy.label}
         </a>
-        <a href={footer.terms.href} className="hover:underline">
+        <a href={footer.terms.href} className="hit hover:underline">
           {footer.terms.label}
         </a>
         <span>{brand.copyright}</span>

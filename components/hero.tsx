@@ -93,7 +93,7 @@ export function Hero() {
               type="button"
               onClick={() => setPaused((p) => !p)}
               aria-pressed={paused}
-              className="t-label rounded-full bg-[var(--color-white)] px-4 py-2 text-[11px] text-[var(--color-ink)]"
+              className="t-label hit rounded-full bg-[var(--color-white)] px-4 py-2 text-[11px] text-[var(--color-ink)]"
             >
               {paused ? ui.play : ui.pause}
             </button>

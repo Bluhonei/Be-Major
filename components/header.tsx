@@ -32,14 +32,14 @@ export function Header() {
   return (
     <header className={`site-header ${solid || open ? "is-solid" : ""}`}>
       <div className="flex h-full items-center justify-between px-4 md:px-8">
-        <a href="#top" className="site-header__logo block w-24 md:w-32" tabIndex={solid ? 0 : -1} aria-hidden={!solid}>
+        <a href="#top" className="site-header__logo hit block w-24 md:w-32" tabIndex={solid ? 0 : -1} aria-hidden={!solid}>
           <Logo className="h-auto w-full" />
         </a>
         <nav aria-label="Sections" className="hidden lg:block">
           <ul className={`t-label flex gap-6 text-xs ${solid ? "" : pill}`}>
             {nav.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="hover:text-[var(--color-blue-deep)]">
+                <a href={n.href} className="hit hover:text-[var(--color-blue-deep)]">
                   {n.label}
                 </a>
               </li>
@@ -48,7 +48,7 @@ export function Header() {
         </nav>
         <button
           type="button"
-          className={`t-label text-xs lg:hidden ${pill}`}
+          className={`t-label hit text-xs lg:hidden ${pill}`}
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((o) => !o)}

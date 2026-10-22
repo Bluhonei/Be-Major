@@ -29,6 +29,21 @@ body {
   overflow-x: clip;
 }
 
+/* Expands an element's tap area to at least 44×44px around its centre
+   without changing how it looks. */
+.hit {
+  position: relative;
+}
+.hit::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
 :focus-visible {
   outline: 3px solid var(--color-blue-deep);
   outline-offset: 3px;
