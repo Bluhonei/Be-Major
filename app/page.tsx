@@ -8,7 +8,7 @@ import { Mission } from "@/components/sections/mission";
 import { Pillars } from "@/components/sections/pillars";
 import { Programs } from "@/components/sections/programs";
 import { Vision } from "@/components/sections/vision";
-import { CONTACT_EMAIL, INSTAGRAM, SITE_URL } from "@/config/site";
+import { CONTACT_EMAIL, INSTAGRAM, LINKEDIN, SITE_URL } from "@/config/site";
 import { brand, seo, ui } from "@/content/site";
 
 // Organization only, never an NGO type (brand language rule).
@@ -21,7 +21,7 @@ const jsonLd = {
   slogan: brand.tagline,
   description: seo.description,
   email: CONTACT_EMAIL,
-  sameAs: [INSTAGRAM.url],
+  sameAs: [INSTAGRAM.url, LINKEDIN.url],
   parentOrganization: { "@type": "Organization", name: brand.parent },
 };
 

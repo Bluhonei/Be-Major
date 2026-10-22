@@ -23,7 +23,7 @@ export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);
 
 export const brand = {
   name: "Be Major",
-  tagline: "Make it major.",
+  tagline: "Make it major",
   supporting: "Community. Opportunity. Impact.",
   parent: "BRAE Media LLC",
   copyright: "© 2026 Be Major. An initiative of BRAE Media LLC.",
@@ -45,6 +45,7 @@ export const ui = {
   status: "Status",
   emailUs: "Email us",
   instagram: "Instagram",
+  linkedin: "LinkedIn",
 };
 
 export const nav = [
@@ -57,7 +58,6 @@ export const nav = [
 // Fixed corner tab, bottom-right.
 export const cornerTab = {
   join: { label: "Join Us", href: "#join" },
-  partner: { label: "Partner With Us" },
 };
 
 export const hero = {
@@ -186,7 +186,7 @@ export const join = {
       optIn: "Yes, send me Be Major updates. I can unsubscribe anytime.",
       honeypot: "Leave this field empty",
     },
-    submit: "Sign up",
+    submit: "Keep Me Posted",
     sending: "Sending…",
     success: "You're in. Watch your inbox for what's next.",
     errors: {

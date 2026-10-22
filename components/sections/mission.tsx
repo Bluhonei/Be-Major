@@ -8,7 +8,7 @@ export function Mission() {
     <section id="mission" aria-labelledby="mission-label" className="bg-[var(--color-grey)]">
       <div className="grid gap-14 px-5 py-24 md:grid-cols-12 md:px-12 md:py-32">
         <Reveal className="md:col-span-6">
-          <h2 id="mission-label" className="t-label text-xs text-[var(--color-teal-deep)]">
+          <h2 id="mission-label" className="t-label text-base text-[var(--color-teal-deep)]">
             {mission.label}
           </h2>
           <p className="mt-6 text-2xl leading-snug font-light md:text-3xl">

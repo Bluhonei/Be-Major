@@ -9,7 +9,7 @@ export function Join() {
   return (
     <section id="join" aria-labelledby="join-label" className="bg-[var(--color-grey)] px-3 py-20 md:px-8 md:py-28">
       <div className="px-2 md:px-4">
-        <h2 id="join-label" className="t-label text-xs text-[var(--color-blue-deep)]">
+        <h2 id="join-label" className="t-label text-base text-[var(--color-blue-deep)]">
           {join.label}
         </h2>
         <SplitLines text={join.headline} className="t-display mt-6 max-w-[16ch] text-[clamp(3rem,8vw,7.5rem)]" />
