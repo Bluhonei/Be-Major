@@ -129,7 +129,7 @@ export const programs = {
     {
       slug: "culture-collective",
       name: "Culture Collective",
-      status: "In development",
+      status: "Q2 / 2027",
       text: "Culture Collective brings people together through immersive experiences, creative exploration, and meaningful conversations. From the arts and culinary traditions to cultural storytelling, the program celebrates diverse perspectives while creating opportunities for discovery, connection, and collaboration.",
       subOfferings: [],
       media: {},
@@ -139,7 +139,7 @@ export const programs = {
     {
       slug: "ai-anatomy",
       name: "AI Anatomy",
-      status: "In development",
+      status: "Q1 / 2027",
       text: "AI Anatomy makes emerging technology more accessible through practical learning and hands-on exploration. Designed for curious minds at every stage, the program demystifies artificial intelligence, builds digital confidence, and equips participants with the knowledge to navigate an increasingly AI-driven world.",
       subOfferings: [],
       media: {},
@@ -149,7 +149,7 @@ export const programs = {
     {
       slug: "marketing-matrix",
       name: "The (Marketing) Matrix",
-      status: "In development",
+      status: "Q1 / 2027",
       text: "The (Marketing) Matrix explores the power of personal branding and digital storytelling. Through practical workshops and real-world insights, participants learn to shape their narratives, strengthen their professional presence, and navigate the digital landscape with confidence and intention.",
       subOfferings: [],
       media: {},
