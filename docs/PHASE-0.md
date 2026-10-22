@@ -206,3 +206,4 @@ Font comparison page (A: Anton/Big Shoulders + Jost · B: Jost only · C: Archiv
 - Note: this GitHub repo is **public**. No keys, subscriber data or account details go in it.
 - Logo (Oct 22): vector extracted from Brae's Illustrator master (page 2), with the line under MAJOR removed and no tracing. Lives in `lib/logo-paths.ts`, `public/brand/logo-{dark,white}.svg` and `design/logo-source/be-major-logo.svg`. The "be" and swash are one connected outline in the source, so the draw-in is a soft-edged mask sweep left to right, not a stroke trace.
 - Flodesk: Brae approved a "Be Major" segment. It has to be created in the Flodesk UI, because the connector can only create segments pre-filled from existing subscribers.
+- Legal (Oct 23): Privacy and Terms link to BRAE Media's policies on bluhonei.com (`/privacy-policy`, `/terms-of-service`). Be Major has no legal pages of its own. Footer copyright reads "© 2026 Be Major. An initiative of BRAE Media LLC."

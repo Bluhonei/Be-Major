@@ -13,14 +13,11 @@ export type FlagKind = "review" | "brae-to-write" | "brae-to-supply";
 export type Flagged = { text: string; flag: FlagKind; note?: string };
 export type Copy = string | Flagged;
 
-const flagged = (flag: FlagKind, text: string, note?: string): Flagged => ({
+export const flagged = (flag: FlagKind, text: string, note?: string): Flagged => ({
   text,
   flag,
   note,
 });
-
-const LOREM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
 export const copyText = (c: Copy) => (typeof c === "string" ? c : c.text);
 
@@ -29,7 +26,7 @@ export const brand = {
   tagline: "Make it major.",
   supporting: "Community. Opportunity. Impact.",
   parent: "BRAE Media LLC",
-  copyright: "© 2026 BRAE Media LLC",
+  copyright: "© 2026 Be Major. An initiative of BRAE Media LLC.",
 };
 
 export const seo = {
@@ -201,19 +198,8 @@ export const join = {
   },
 };
 
+// Be Major uses BRAE Media's policies on the Bluhoneí site.
 export const footer = {
-  privacy: { label: "Privacy", href: "/privacy" },
-  terms: { label: "Terms", href: "/terms" },
-};
-
-export const legal = {
-  privacy: {
-    title: "Privacy",
-    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Privacy policy copy"),
-  },
-  terms: {
-    title: "Terms",
-    body: flagged("brae-to-supply", `${LOREM} ${LOREM}`, "Terms copy"),
-  },
-  back: "Back to Be Major",
+  privacy: { label: "Privacy", href: "https://bluhonei.com/privacy-policy" },
+  terms: { label: "Terms", href: "https://bluhonei.com/terms-of-service" },
 };
