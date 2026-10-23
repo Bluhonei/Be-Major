@@ -65,6 +65,11 @@ body {
   text-transform: uppercase;
 }
 
+/* Decorative text drawn from data-text (see components/footer.tsx). */
+.silhouette::before {
+  content: attr(data-text);
+}
+
 /* -------------------------------------------------------------- frame */
 
 .frame {
@@ -356,7 +361,7 @@ body {
     width: auto;
     flex-wrap: wrap;
   }
-  .marquee__dupe {
+  .marquee__clone {
     display: none;
   }
 }
