@@ -12,7 +12,7 @@ export function LegalPage({ page }: { page: LegalPageContent }) {
   return (
     <>
       <Header alwaysSolid />
-      <Frame />
+      <Frame cornerTab={false} />
       <main id="main" className="px-5 pt-[calc(var(--header-h)+var(--frame)+48px)] pb-24 md:px-12 md:pb-32">
         <article className="mx-auto max-w-[68ch]">
           {page.draft && SHOW_FLAGS && (
