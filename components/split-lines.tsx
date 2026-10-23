@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ElementType } from "react";
+import { useEffect, useState, type CSSProperties, type ElementType } from "react";
 import { useReveal } from "@/lib/motion";
 
 // Oversized text that slides up line by line as it enters. Words are
@@ -18,44 +18,53 @@ export function SplitLines({
   id?: string;
 }) {
   const ref = useReveal<HTMLElement>(0.15);
-  const measure = useRef<HTMLSpanElement>(null);
   const [lines, setLines] = useState<string[] | null>(null);
-  const words = text.split(/\s+/);
 
+  // Line breaks are found with a throwaway copy of the words, built and
+  // removed in one pass, so the page only ever holds the screen-reader text
+  // and the visible lines (no third copy for text extractors to pick up).
   useEffect(() => {
-    const el = measure.current;
+    const el = ref.current;
     if (!el) return;
+    const words = text.split(/\s+/);
     const group = () => {
-      const spans = Array.from(el.children) as HTMLElement[];
+      const probe = document.createElement("span");
+      probe.setAttribute("aria-hidden", "true");
+      probe.className = "pointer-events-none invisible absolute inset-x-0 top-0";
+      for (const w of words) {
+        const s = document.createElement("span");
+        s.textContent = `${w} `;
+        probe.appendChild(s);
+      }
+      el.appendChild(probe);
       const out: string[][] = [];
       let top = -Infinity;
-      spans.forEach((s, i) => {
-        if (s.offsetTop > top + 2) {
+      Array.from(probe.children).forEach((s, i) => {
+        const t = (s as HTMLElement).offsetTop;
+        if (t > top + 2) {
           out.push([]);
-          top = s.offsetTop;
+          top = t;
         }
         out[out.length - 1].push(words[i]);
       });
+      probe.remove();
       setLines(out.map((l) => l.join(" ")));
     };
     group();
-    const ro = new ResizeObserver(group);
+    let width = el.clientWidth;
+    const ro = new ResizeObserver(() => {
+      if (el.clientWidth === width) return;
+      width = el.clientWidth;
+      group();
+    });
     ro.observe(el);
     document.fonts?.ready.then(group);
     return () => ro.disconnect();
-    // words derive from text
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text]);
+  }, [text, ref]);
 
   return (
     <Tag ref={ref} id={id} className={`reveal-lines relative ${className}`}>
       <span className="sr-only">{text}</span>
-      {/* Invisible copy used only to find line breaks at the current width. */}
-      <span ref={measure} aria-hidden className="pointer-events-none invisible absolute inset-x-0 top-0">
-        {words.map((w, i) => (
-          <span key={i}>{w} </span>
-        ))}
-      </span>
       <span aria-hidden className="block">
         {(lines ?? [text]).map((line, i) => (
           <span key={i} className="line" style={{ "--i": i } as CSSProperties}>

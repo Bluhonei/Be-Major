@@ -26,7 +26,9 @@ export const brand = {
   tagline: "Make it Major",
   supporting: "Community. Opportunity. Impact.",
   parent: "BRAE Media LLC",
-  copyright: "© 2026 Be Major. An initiative of BRAE Media LLC.",
+  // Rendered as `${copyright} ${parent}.` so the parent name can become a
+  // link (config/site.ts PARENT_URL) without changing the wording.
+  copyright: "© 2026 Be Major. An initiative of",
 };
 
 export const seo = {

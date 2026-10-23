@@ -32,6 +32,11 @@ export const LINKEDIN = {
 
 export const CONTACT_EMAIL = "hello@be-major.com";
 
+// BRAE Media LLC's site. Leave null until that domain is live: while null,
+// the footer shows the name as plain text and the structured data omits a
+// URL, so production never carries a placeholder or broken link.
+export const PARENT_URL: string | null = null;
+
 // Search engines may index only the production deployment, and only after
 // launch. Preview deployments are never indexable, before or after launch.
 export const INDEXABLE = LAUNCHED && process.env.VERCEL_ENV === "production";

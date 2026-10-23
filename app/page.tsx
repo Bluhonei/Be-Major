@@ -9,7 +9,7 @@ import { Pillars } from "@/components/sections/pillars";
 import { Programs } from "@/components/sections/programs";
 import { Vision } from "@/components/sections/vision";
 import type { Metadata } from "next";
-import { CONTACT_EMAIL, INSTAGRAM, LINKEDIN, SITE_URL } from "@/config/site";
+import { CONTACT_EMAIL, INSTAGRAM, LINKEDIN, PARENT_URL, SITE_URL } from "@/config/site";
 import { brand, seo, ui } from "@/content/site";
 
 // Self-referencing canonical. metadataBase (app/layout.tsx) resolves it to
@@ -27,7 +27,7 @@ const jsonLd = {
   description: seo.description,
   email: CONTACT_EMAIL,
   sameAs: [INSTAGRAM.url, LINKEDIN.url],
-  parentOrganization: { "@type": "Organization", name: brand.parent },
+  parentOrganization: { "@type": "Organization", name: brand.parent, ...(PARENT_URL ? { url: PARENT_URL } : {}) },
 };
 
 export default function Home() {
